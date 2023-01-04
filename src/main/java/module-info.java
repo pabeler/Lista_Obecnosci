@@ -6,6 +6,8 @@ module com.example.demo1 {
     requires com.dlsc.formsfx;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.persistence;
+    requires java.sql;
 
     opens com.example.demo1 to javafx.fxml;
     exports com.example.demo1;

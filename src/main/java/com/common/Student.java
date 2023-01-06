@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "studenci", schema = "lista_obecnosci_jpa")
+@Table(name = "studenci")
 public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -23,6 +23,9 @@ public class Student {
     @Basic
     @Column(name = "obecnosc", nullable = true, length = 30)
     private String obecnosc;
+
+    public Student(){};
+
 
 
     public int getId() {
@@ -77,4 +80,7 @@ public class Student {
     public int hashCode() {
         return Objects.hash(id, imie, nazwisko, grupa);
     }
+
+
+
 }

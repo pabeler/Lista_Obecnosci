@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "grupy", schema = "lista_obecnosci_jpa")
+@Table(name = "grupy")
 public class Grupa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -17,6 +17,8 @@ public class Grupa {
     @Basic
     @Column(name = "nazwa", nullable = true, length = 45)
     private String nazwa;
+
+    public Grupa(){};
 
     public int getId() {
         return id;

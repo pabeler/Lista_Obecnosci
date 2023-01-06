@@ -4,9 +4,7 @@ import com.common.DataPackage;
 import com.common.Grupa;
 import com.common.Student;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -15,14 +13,20 @@ import java.net.Socket;
 import java.sql.Date;
 import java.util.HashMap;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
 public class ClientHandler extends Thread {
     //private String name;
     private Socket s;
     private ObjectInputStream dis;
     private ObjectOutputStream dos;
     private boolean isRunning = true;
-    @PersistenceContext
-    private EntityManager em;
+    private SessionFactory sessionFactory;
+
 
     public ClientHandler(Socket s, ObjectInputStream dis, ObjectOutputStream dos) {
         //this.name = name;
@@ -30,9 +34,22 @@ public class ClientHandler extends Thread {
         this.dis = dis;
         this.dos = dos;
     }
+
     public void run() {
-        String received;
-        String toreturn;
+
+        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+                .configure("hibernate.cfg.xml") // configures settings from hibernate.cfg.xml
+                .build();
+        try {
+            sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
+        }
+        catch (Exception e) {
+            // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
+            // so destroy it manually.
+            StandardServiceRegistryBuilder.destroy( registry );
+        }
+        Session em = sessionFactory.openSession();
+
 
         while (isRunning) {
             try {

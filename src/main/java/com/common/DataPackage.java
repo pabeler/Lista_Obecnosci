@@ -23,7 +23,7 @@ public class DataPackage {
         this.command = command;
     }
 
-    public Object getData() {
+    public HashMap<String, Object> getData() {
         return data;
     }
 

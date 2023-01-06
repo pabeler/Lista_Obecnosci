@@ -1,10 +1,19 @@
 package com.backend;
 
 import com.common.DataPackage;
+import com.common.Grupa;
+import com.common.Student;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.*;
 import java.net.Socket;
-import java.util.Date;
+import java.sql.Date;
+import java.util.HashMap;
 
 public class ClientHandler extends Thread {
     //private String name;
@@ -12,6 +21,8 @@ public class ClientHandler extends Thread {
     private ObjectInputStream dis;
     private ObjectOutputStream dos;
     private boolean isRunning = true;
+    @PersistenceContext
+    private EntityManager em;
 
     public ClientHandler(Socket s, ObjectInputStream dis, ObjectOutputStream dos) {
         //this.name = name;
@@ -27,10 +38,7 @@ public class ClientHandler extends Thread {
             try {
                 // Ask user what he wants
                 DataPackage dataPackage = (DataPackage) dis.readObject();
-
-                // creating Date object
-                Date date = new Date();
-
+                HashMap<String, Object> data = dataPackage.getData();
                 // write on output stream based on the
                 // answer from the client
                 switch (dataPackage.getCommand()) {
@@ -44,30 +52,86 @@ public class ClientHandler extends Thread {
 
                     case ADD_STUDENT:
                         //Todo: add student to database;
+                        em.getTransaction().begin();
+                        Student student = new Student();
+                        student.setId((int) data.get("ID_Studenta"));
+                        student.setImie((String) data.get("Imie"));
+                        student.setNazwisko((String) data.get("Nazwisko"));
+                        student.setGrupa((int) data.get("ID_Grupy"));
+                        em.persist(student);
+                        em.getTransaction().commit();
                         break;
                     case DELETE_STUDENT:
                         //Todo: delete student from database;
+                        em.getTransaction().begin();
+                        em.remove(em.find(Student.class, data.get("ID_Studenta")));
+                        em.getTransaction().commit();
                         break;
                     case ADD_GROUP:
                         //Todo: add group to database;
+                        em.getTransaction().begin();
+                        Grupa grupa = new Grupa();
+                        grupa.setId((int) data.get("ID_Grupy"));
+                        grupa.setNazwa((String) data.get("Nazwa"));
+                        grupa.setTermin(null);
+                        em.persist(grupa);
+                        em.getTransaction().commit();
                         break;
                     case DELETE_GROUP:
                         //Todo: delete group from database;
+                        em.getTransaction().begin();
+                        em.remove(em.find(Grupa.class, data.get("ID_Grupy")));
+                        em.getTransaction().commit();
                         break;
                     case ADD_STUDENT_TO_GROUP:
                         //Todo: add student to group in database;
+                        Student student1 = em.find(Student.class, data.get("ID_Studenta"));
+                        em.detach(student1);
+                        student1.setGrupa((int) data.get("ID_Grupy"));
+                        em.getTransaction().begin();
+                        em.merge(student1);
+                        em.getTransaction().commit();
                         break;
                     case REMOVE_STUDENT_FROM_GROUP:
                         //Todo: remove student from group in database;
+                        Student student2 = em.find(Student.class, data.get("ID_Studenta"));
+                        em.detach(student2);
+                        student2.setGrupa(null);
+                        em.getTransaction().begin();
+                        em.merge(student2);
+                        em.getTransaction().commit();
                         break;
                     case ADD_DEADLINE:
                         //Todo: add deadline for a group;
+                        Grupa grupa1 = em.find(Grupa.class, data.get("ID_Grupy"));
+                        em.detach(grupa1);
+                        grupa1.setTermin((Date) data.get("Termin"));
+                        em.getTransaction().begin();
+                        em.merge(grupa1);
+                        em.getTransaction().commit();
                         break;
                     case CHECK_ABSENCE:
                         //Todo: check if student is absent;
+                        Student student3 = em.find(Student.class, data.get("ID_Studenta"));
+                        em.detach(student3);
+                        student3.setObecnosc((String) data.get("Obecnosc"));
+                        em.getTransaction().begin();
+                        em.merge(student3);
+                        em.getTransaction().commit();
                         break;
                     case GET_ABSENCE_LIST:
                         //Todo: get list of students who are absent;
+                        CriteriaBuilder cb = em.getCriteriaBuilder();
+                        CriteriaQuery<Student> cq = cb.createQuery(Student.class);
+                        Root<Student> rootEntry = cq.from(Student.class);
+                        CriteriaQuery<Student> all = cq.select(rootEntry);
+                        TypedQuery<Student> allQuery = em.createQuery(all);
+                        HashMap<String, Object> students = new HashMap<>();
+                        for (Student s : allQuery.getResultList()) {
+                            students.put(String.valueOf(s.getId()), s);
+                        }
+                        DataPackage dataPackage1 = new DataPackage(null, students);
+                        dos.writeObject(dataPackage1);
                         break;
 
                     default:

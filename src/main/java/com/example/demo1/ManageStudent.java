@@ -1,14 +1,13 @@
 package com.example.demo1;
 
-import javafx.application.Application;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ManageStudent {
     public final BorderPane borderPane=new BorderPane();
@@ -39,6 +38,18 @@ public class ManageStudent {
         idDodaj.setPromptText("ID Studenta");
         TextField grupaDodaj=new TextField();
         grupaDodaj.setPromptText("ID Grupy");
+
+        dodaj.setOnMouseClicked(event ->{
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT, new HashMap<>(Map.of("Imie", imieDodaj.getText(), "Nazwisko", nazwiskoDodaj.getText(), "ID_Studenta", idDodaj.getText(), "ID_Grupy", grupaDodaj.getText())));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+
+
 
         gridPane.add(dodaj,0,0);
         gridPane.add(idDodaj,1,0);
@@ -74,6 +85,7 @@ public class ManageStudent {
         gridPane.add(grupaDodajDoGrupy,2,3);
 
 
+
         Button dodajTerminGrupy=new Button("Dodaj termin grupy");
         dodajTerminGrupy.setPrefWidth(WIDTH);
         TextField idDodajTerminGrupy=new TextField();
@@ -86,6 +98,22 @@ public class ManageStudent {
         borderPane.setCenter(gridPane);
 //        navbar.gridPane.setAlignment(Pos.TOP_CENTER);
         borderPane.setTop(navbar.gridPane);
+
+        Button dodajGrupa=new Button("Dodaj Grupe");
+        dodajGrupa.setPrefWidth(WIDTH);
+        TextField idDodajGrupa=new TextField();
+        idDodajGrupa.setPromptText("ID Grupy");
+        gridPane.add(dodajGrupa,0,5);
+        gridPane.add(idDodajGrupa,1,5);
+
+        Button usunGrupa=new Button("Usun Grupe");
+        usunGrupa.setPrefWidth(WIDTH);
+        TextField idUsunGrupa=new TextField();
+        idUsunGrupa.setPromptText("ID Grupy");
+        gridPane.add(usunGrupa,0,6);
+        gridPane.add(idUsunGrupa,1,6);
+
+
 
 
 

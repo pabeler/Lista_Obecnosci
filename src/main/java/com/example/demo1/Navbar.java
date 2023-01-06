@@ -12,7 +12,7 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
-public class Navbar extends Start{
+public class Navbar{
     final double WIDTH = Double.MAX_VALUE;
     final double HEIGHT = Double.MAX_VALUE;
     GridPane gridPane=new GridPane();

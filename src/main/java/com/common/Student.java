@@ -20,7 +20,9 @@ public class Student {
     @Basic
     @Column(name = "grupa", nullable = true)
     private Integer grupa;
-
+    @Basic
+    @Column(name = "obecnosc", nullable = true, length = 30)
+    private String obecnosc;
 
 
     public int getId() {
@@ -53,6 +55,14 @@ public class Student {
 
     public void setGrupa(Integer grupa) {
         this.grupa = grupa;
+    }
+
+    public String getObecnosc() {
+        return obecnosc;
+    }
+
+    public void setObecnosc(String obecnosc) {
+        this.obecnosc = obecnosc;
     }
 
     @Override

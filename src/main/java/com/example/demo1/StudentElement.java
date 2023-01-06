@@ -1,11 +1,14 @@
 package com.example.demo1;
 
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Control;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StudentElement extends GridPane {
     StudentElement(String imie, String nazwisko, String id, String grupa){
@@ -13,13 +16,20 @@ public class StudentElement extends GridPane {
         Text textNazwisko=new Text(nazwisko);
         Text textId=new Text(id);
         Text textGrupa=new Text(grupa);
-        ChoiceBox<Object> choiceBox=new ChoiceBox();
+        ChoiceBox<Object> choiceBox=new ChoiceBox<>();
 
 
-        choiceBox.getItems().addAll("Obecny","Nieobecny","Spóźniony");
+        choiceBox.getItems().addAll("Obecny","Nieobecny","Spozniony");
         choiceBox.setValue("Obecny");
         choiceBox.setOnAction(event -> {
             System.out.println(choiceBox.getValue());
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.CHECK_ABSENCE, new HashMap<>(Map.of("Imie", imie, "Nazwisko", nazwisko, "ID_Studenta", id, "ID_Grupy", grupa, "Obecnosc", choiceBox.getValue())));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
         });
 
         this.getChildren().addAll(textImie,textNazwisko,textId,textGrupa,choiceBox);

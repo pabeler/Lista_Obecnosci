@@ -1,5 +1,6 @@
 package com.example.demo1;
 
+import com.common.DataPackage;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -11,10 +12,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StudentElement extends GridPane {
-    StudentElement(String imie, String nazwisko, String id, String grupa){
+    StudentElement(String imie, String nazwisko, int id, String grupa){
         Text textImie=new Text(imie);
         Text textNazwisko=new Text(nazwisko);
-        Text textId=new Text(id);
+        Text textId=new Text(String.valueOf(id));
         Text textGrupa=new Text(grupa);
         ChoiceBox<Object> choiceBox=new ChoiceBox<>();
 

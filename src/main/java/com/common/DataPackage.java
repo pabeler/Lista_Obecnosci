@@ -2,7 +2,7 @@ package com.common;
 
 import java.util.HashMap;
 
-public class DataPackage {
+public class DataPackage implements java.io.Serializable {
     private Command command;
     private HashMap<String, Object> data;
 

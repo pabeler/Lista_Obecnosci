@@ -2,9 +2,22 @@ package com.backend;
 
 import com.common.DataPackage;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Date;
+import java.sql.Date;
+
+import com.common.Grupa;
+import com.common.Student;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
 
 public class ClientHandler extends Thread {
     //private String name;
@@ -19,6 +32,7 @@ public class ClientHandler extends Thread {
         this.dis = dis;
         this.dos = dos;
     }
+
     public void run() {
         String received;
         String toreturn;
@@ -27,14 +41,15 @@ public class ClientHandler extends Thread {
             try {
                 // Ask user what he wants
                 DataPackage dataPackage = (DataPackage) dis.readObject();
-
-                // creating Date object
-                Date date = new Date();
-
+                Configuration configuration = new Configuration();
+                configuration.configure("hibernate.xml");
+                SessionFactory factory = configuration.buildSessionFactory();
+                Session session = factory.openSession();
+                Transaction t = session.beginTransaction();
                 // write on output stream based on the
                 // answer from the client
                 switch (dataPackage.getCommand()) {
-                    case EXIT_PROGRAM :
+                    case EXIT_PROGRAM:
                         System.out.println("Client " + this.s + " sends exit...");
                         System.out.println("Closing this connection.");
                         this.s.close();
@@ -44,15 +59,24 @@ public class ClientHandler extends Thread {
 
                     case ADD_STUDENT:
                         //Todo: add student to database;
+                        Student s1 = (Student) dataPackage.getData();
+                        session.save(s1);
+                        t.commit();
                         break;
                     case DELETE_STUDENT:
                         //Todo: delete student from database;
+                        Student s2 = (Student) dataPackage.getData();
+                        session.delete(s2);
                         break;
                     case ADD_GROUP:
                         //Todo: add group to database;
+                        Grupa g1 = (Grupa) dataPackage.getData();
+                        session.save(g1);
                         break;
                     case DELETE_GROUP:
                         //Todo: delete group from database;
+                        Grupa g2 = (Grupa) dataPackage.getData();
+                        session.delete(g2);
                         break;
                     case ADD_STUDENT_TO_GROUP:
                         //Todo: add student to group in database;
@@ -69,23 +93,23 @@ public class ClientHandler extends Thread {
                     case GET_ABSENCE_LIST:
                         //Todo: get list of students who are absent;
                         break;
-
                     default:
                         dos.writeUTF("Invalid input");
                         break;
                 }
+                this.dos.writeUTF("successfully saved");
+                factory.close();
+                session.close();
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-        };
+        }
 
-        try
-        {
+        try {
             // closing resources
             this.dis.close();
             this.dos.close();
-
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

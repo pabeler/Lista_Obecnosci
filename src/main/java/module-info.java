@@ -8,6 +8,7 @@ module com.example.demo1 {
     requires org.kordamp.bootstrapfx.core;
     requires java.persistence;
     requires java.sql;
+    requires org.hibernate.orm.core;
 
     opens com.example.demo1 to javafx.fxml;
     exports com.example.demo1;

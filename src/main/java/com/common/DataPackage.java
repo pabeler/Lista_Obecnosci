@@ -1,10 +1,12 @@
 package com.common;
 
+import java.util.HashMap;
+
 public class DataPackage {
     private Command command;
-    private Object data; //Students are Objects, so we can use this field for both Student and List<Student>
+    private HashMap<String, Object> data;
 
-    public DataPackage(Command command, Object data) {
+    public DataPackage(Command command, HashMap<String, Object> data) {
         this.command = command;
         this.data = data;
     }
@@ -25,7 +27,7 @@ public class DataPackage {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(HashMap<String, Object> data) {
         this.data = data;
     }
 

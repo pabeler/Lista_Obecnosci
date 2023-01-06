@@ -85,27 +85,38 @@ public class ClientHandler extends Thread {
                         break;
                     case ADD_STUDENT_TO_GROUP:
                         //Todo: add student to group in database;
+                        Student student1 = em.find(Student.class, data.get("ID_Studenta"));
+                        em.detach(student1);
+                        student1.setGrupa((int) data.get("ID_Grupy"));
                         em.getTransaction().begin();
-                        em.find(Student.class, data.get("ID_Studenta")).setGrupa((int) data.get("ID_Grupy"));
+                        em.merge(student1);
                         em.getTransaction().commit();
                         break;
                     case REMOVE_STUDENT_FROM_GROUP:
                         //Todo: remove student from group in database;
+                        Student student2 = em.find(Student.class, data.get("ID_Studenta"));
+                        em.detach(student2);
+                        student2.setGrupa(null);
                         em.getTransaction().begin();
-                        em.find(Student.class, data.get("ID_Studenta")).setGrupa(null);
+                        em.merge(student2);
                         em.getTransaction().commit();
                         break;
                     case ADD_DEADLINE:
                         //Todo: add deadline for a group;
+                        Grupa grupa1 = em.find(Grupa.class, data.get("ID_Grupy"));
+                        em.detach(grupa1);
+                        grupa1.setTermin((Date) data.get("Termin"));
                         em.getTransaction().begin();
-                        em.find(Grupa.class, data.get("ID_Grupy")).setTermin((Date) data.get("Termin"));
+                        em.merge(grupa1);
                         em.getTransaction().commit();
                         break;
                     case CHECK_ABSENCE:
                         //Todo: check if student is absent;
+                        Student student3 = em.find(Student.class, data.get("ID_Studenta"));
+                        em.detach(student3);
+                        student3.setObecnosc((String) data.get("Obecnosc"));
                         em.getTransaction().begin();
-                        Student student1 = em.find(Student.class, data.get("ID_Studenta"));
-                        student1.setObecnosc((String) data.get("Obecnosc"));
+                        em.merge(student3);
                         em.getTransaction().commit();
                         break;
                     case GET_ABSENCE_LIST:

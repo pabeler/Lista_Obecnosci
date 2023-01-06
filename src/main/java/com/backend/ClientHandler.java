@@ -71,7 +71,7 @@ public class ClientHandler extends Thread {
                         //Todo: add student to database;
                         em.getTransaction().begin();
                         Student student = new Student();
-                        student.setId((int) data.get("ID_Studenta"));
+                        //student.setId((int) data.get("ID_Studenta"));
                         student.setImie((String) data.get("Imie"));
                         student.setNazwisko((String) data.get("Nazwisko"));
                         student.setGrupa((int) data.get("ID_Grupy"));
@@ -88,7 +88,7 @@ public class ClientHandler extends Thread {
                         //Todo: add group to database;
                         em.getTransaction().begin();
                         Grupa grupa = new Grupa();
-                        grupa.setId((int) data.get("ID_Grupy"));
+                        //grupa.setId((int) data.get("ID_Grupy"));
                         grupa.setNazwa((String) data.get("Nazwa"));
                         grupa.setTermin(null);
                         em.persist(grupa);
@@ -157,6 +157,7 @@ public class ClientHandler extends Thread {
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
+                break;
             }
         };
 

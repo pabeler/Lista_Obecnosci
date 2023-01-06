@@ -41,7 +41,7 @@ public class ManageStudent {
         grupaDodaj.setPromptText("ID Grupy");
 
         dodaj.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT, new HashMap<>(Map.of("Imie", imieDodaj.getText(), "Nazwisko", nazwiskoDodaj.getText(), "ID_Studenta", idDodaj.getText(), "ID_Grupy", grupaDodaj.getText())));
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT, new HashMap<>(Map.of("Imie", imieDodaj.getText(), "Nazwisko", nazwiskoDodaj.getText(), "ID_Studenta", Integer.valueOf(idDodaj.getText()), "ID_Grupy", Integer.valueOf(grupaDodaj.getText()))));
             try {
                 Start.client.send(dataPackage);
                 Start.client.receive();

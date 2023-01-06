@@ -1,4 +1,4 @@
-module com.example.demo1 {
+module com.example.demo {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -7,10 +7,10 @@ module com.example.demo1 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
-    requires jandex;
     requires org.hibernate.orm.core;
     requires java.naming;
-    requires java.persistence;
+    requires jakarta.persistence;
+
 
     opens com.common to org.hibernate.orm.core;
     opens com.example.demo1 to javafx.fxml;

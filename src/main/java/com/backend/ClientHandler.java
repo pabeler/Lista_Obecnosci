@@ -99,7 +99,7 @@ public class ClientHandler extends Thread {
                     }
                     case ADD_GROUP -> {
                         try {
-                            if (data.get("Nazwa") == null) {
+                            if (((String) data.get("Nazwa")).isEmpty()) {
                                 throw new Exception("Nazwa grupy nie moze byc pusta");
                             }
                             Grupa grupa = new Grupa();

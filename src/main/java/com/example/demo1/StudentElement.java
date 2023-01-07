@@ -32,7 +32,7 @@ public class StudentElement extends GridPane {
         choiceBox.setValue(obecnosc);
         choiceBox.setOnAction(event -> {
             System.out.println(choiceBox.getValue());
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.CHECK_ABSENCE, new HashMap<>(Map.of("Imie", imie, "Nazwisko", nazwisko, "ID_Grupy", grupa, "Obecnosc", choiceBox.getValue())));
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.CHECK_ABSENCE, new HashMap<>(Map.of("Imie", imie, "Nazwisko", nazwisko, "ID_Grupy", grupa, "Obecnosc", choiceBox.getValue(),"ID_Studenta", id)));
             try {
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();

@@ -41,6 +41,8 @@ public class DataPackage implements java.io.Serializable {
         ADD_DEADLINE,
         CHECK_ABSENCE,
         GET_ABSENCE_LIST,
-        EXIT_PROGRAM
+        EXIT_PROGRAM,
+        SUCCESSFUL,
+        UNSUCCESSFUL,
     }
 }

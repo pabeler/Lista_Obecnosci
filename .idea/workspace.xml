@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Add exception handling to the add_student_to_group command">
+    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Add exception handling to other commands">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673093686594</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add exception handling to other commands">
+      <created>1673094182120</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673094182120</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +209,8 @@
     <MESSAGE value="NEW" />
     <MESSAGE value="Dodanie popup do 2" />
     <MESSAGE value="Add exception handling to the add_student_to_group command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add exception handling to the add_student_to_group command" />
+    <MESSAGE value="Add exception handling to other commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add exception handling to other commands" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -15,7 +15,7 @@ public class Grupa {
     @Column(name = "termin", nullable = true)
     private Date termin;
     @Basic
-    @Column(name = "nazwa", nullable = true, length = 45, unique = true)
+    @Column(name = "nazwa", nullable = true, length = 45)
     private String nazwa;
 
     public Grupa(){};

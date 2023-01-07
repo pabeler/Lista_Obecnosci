@@ -72,7 +72,7 @@ public class ClientHandler extends Thread {
                             Student student = new Student();
                             student.setImie((String) data.get("Imie"));
                             student.setNazwisko((String) data.get("Nazwisko"));
-                            student.setGrupa((int) data.get("ID_Grupy"));
+                            student.setGrupa(null);
                             em.persist(student);
                             em.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
@@ -115,6 +115,7 @@ public class ClientHandler extends Thread {
                     }
                     case ADD_STUDENT_TO_GROUP -> {
                         try {
+                            Grupa grupa = em.find(Grupa.class, data.get("ID_Grupy"));
                             Student student1 = em.find(Student.class, data.get("ID_Studenta"));
                             em.detach(student1);
                             student1.setGrupa((int) data.get("ID_Grupy"));

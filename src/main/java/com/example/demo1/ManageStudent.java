@@ -2,13 +2,10 @@ package com.example.demo1;
 
 import com.common.DataPackage;
 import javafx.animation.PauseTransition;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.stage.Popup;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -17,102 +14,79 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ManageStudent {
-    public final BorderPane borderPane=new BorderPane();
+    public final BorderPane borderPane = new BorderPane();
     final double WIDTH = 150;
 
-
-    public ManageStudent(){
-//        gridPane.setHgap(10);
-//        gridPane.setVgap(10);
-        Navbar navbar=new Navbar();
+    public ManageStudent() {
+        Navbar navbar = new Navbar();
         GridPane gridPane = new GridPane();
-
-
-
-
-
-
-
-
-
-        Button dodaj=new Button("Dodaj Studenta");
+        Button dodaj = new Button("Dodaj Studenta");
         dodaj.setPrefWidth(WIDTH);
-        TextField imieDodaj=new TextField();
+        TextField imieDodaj = new TextField();
         imieDodaj.setPromptText("Imie");
-        TextField nazwiskoDodaj=new TextField();
+        TextField nazwiskoDodaj = new TextField();
         nazwiskoDodaj.setPromptText("Nazwisko");
-        TextField idDodaj=new TextField();
+        TextField idDodaj = new TextField();
         idDodaj.setPromptText("ID Studenta");
 
-        dodaj.setOnMouseClicked(event ->{
-
+        dodaj.setOnMouseClicked(event -> {
             try {
                 DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT, new HashMap<>(Map.of(
                         "Imie", imieDodaj.getText(),
                         "Nazwisko", nazwiskoDodaj.getText())));
                 Start.client.send(dataPackage);
-                DataPackage powiadomienie=Start.client.receive();
-                if(powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Dodano studenta");
+                DataPackage powiadomienie = Start.client.receive();
+                if (powiadomienie.getCommand() == DataPackage.Command.SUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Dodano studenta");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-
-                }
-                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Nie dodano studenta");
+                } else if (powiadomienie.getCommand() == DataPackage.Command.UNSUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Nie dodano studenta");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else {
-                    MyPopup myPopup=new MyPopup("Nie można połączyć z serwerem");
+                } else {
+                    MyPopup myPopup = new MyPopup("Nie można połączyć z serwerem");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
-
-
-
-        gridPane.add(dodaj,0,0);
-        gridPane.add(imieDodaj,1,0);
-        gridPane.add(nazwiskoDodaj,2,0);
-
-        Button usun=new Button("Usuń Studenta");
+        gridPane.add(dodaj, 0, 0);
+        gridPane.add(imieDodaj, 1, 0);
+        gridPane.add(nazwiskoDodaj, 2, 0);
+        Button usun = new Button("Usuń Studenta");
         usun.setPrefWidth(WIDTH);
-
-        TextField idUsun=new TextField();
+        TextField idUsun = new TextField();
         idUsun.setPromptText("ID Studenta");
-        gridPane.add(usun,0,1);
-        gridPane.add(idUsun,1,1);
-        usun.setOnMouseClicked(event ->{
-
+        gridPane.add(usun, 0, 1);
+        gridPane.add(idUsun, 1, 1);
+        usun.setOnMouseClicked(event -> {
             try {
-                DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_STUDENT, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsun.getText()))));
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_STUDENT,
+                        new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsun.getText()))));
                 Start.client.send(dataPackage);
-                DataPackage powiadomienie=Start.client.receive();
-                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Usunięto studenta");
+                DataPackage powiadomienie = Start.client.receive();
+                if (powiadomienie.getCommand() == DataPackage.Command.SUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Usunięto studenta");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Nie usunięto studenta");
+                } else if (powiadomienie.getCommand() == DataPackage.Command.UNSUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Nie usunięto studenta");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else {
+                } else {
                     MyPopup myPopup = new MyPopup("Nie można połączyć z serwerem");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -122,44 +96,39 @@ public class ManageStudent {
 
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
-            catch (NumberFormatException e){
-                MyPopup myPopup=new MyPopup("Niepoprawne ID");
+            } catch (NumberFormatException e) {
+                MyPopup myPopup = new MyPopup("Niepoprawne ID");
                 myPopup.show(borderPane.getScene().getWindow());
                 PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                delay.setOnFinished( a -> myPopup.hide() );
+                delay.setOnFinished(a -> myPopup.hide());
                 delay.play();
             }
         });
-
-        Button usunZGrupy=new Button("Usuń Studenta z grupy");
-
+        Button usunZGrupy = new Button("Usuń Studenta z grupy");
         usunZGrupy.setPrefWidth(WIDTH);
-        TextField idUsunZGrupyStudent=new TextField();
+        TextField idUsunZGrupyStudent = new TextField();
         idUsunZGrupyStudent.setPromptText("ID Studenta");
-        gridPane.add(usunZGrupy,0,2);
-        gridPane.add(idUsunZGrupyStudent,1,2);
-        usunZGrupy.setOnMouseClicked(event ->{
-
+        gridPane.add(usunZGrupy, 0, 2);
+        gridPane.add(idUsunZGrupyStudent, 1, 2);
+        usunZGrupy.setOnMouseClicked(event -> {
             try {
-                DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()))));
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP,
+                        new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()))));
                 Start.client.send(dataPackage);
-                DataPackage powiadomienie=Start.client.receive();
-                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Usunięto studenta z grupy");
+                DataPackage powiadomienie = Start.client.receive();
+                if (powiadomienie.getCommand() == DataPackage.Command.SUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Usunięto studenta z grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Nie usunięto studenta z grupy");
+                } else if (powiadomienie.getCommand() == DataPackage.Command.UNSUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Nie usunięto studenta z grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else {
+                } else {
                     MyPopup myPopup = new MyPopup("Nie można połączyć z serwerem");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -168,8 +137,7 @@ public class ManageStudent {
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
-            catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 MyPopup myPopup = new MyPopup("Niepoprawne ID");
                 myPopup.show(borderPane.getScene().getWindow());
                 PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -177,37 +145,35 @@ public class ManageStudent {
                 delay.play();
             }
         });
-
-        Button dodajDoGrupy=new Button("Dodaj Studenta do grupy");
+        Button dodajDoGrupy = new Button("Dodaj Studenta do grupy");
         dodajDoGrupy.setPrefWidth(WIDTH);
-        TextField idDodajDoGrupy=new TextField();
+        TextField idDodajDoGrupy = new TextField();
         idDodajDoGrupy.setPromptText("ID Studenta");
-        TextField grupaDodajDoGrupy=new TextField();
+        TextField grupaDodajDoGrupy = new TextField();
         grupaDodajDoGrupy.setPromptText("ID Grupy");
-        gridPane.add(dodajDoGrupy,0,3);
-        gridPane.add(idDodajDoGrupy,1,3);
-        gridPane.add(grupaDodajDoGrupy,2,3);
-        dodajDoGrupy.setOnMouseClicked(event ->{
-
+        gridPane.add(dodajDoGrupy, 0, 3);
+        gridPane.add(idDodajDoGrupy, 1, 3);
+        gridPane.add(grupaDodajDoGrupy, 2, 3);
+        dodajDoGrupy.setOnMouseClicked(event -> {
             try {
-                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT_TO_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodajDoGrupy.getText()), "ID_Grupy", Integer.valueOf(grupaDodajDoGrupy.getText()))));
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT_TO_GROUP,
+                        new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodajDoGrupy.getText()),
+                                "ID_Grupy", Integer.valueOf(grupaDodajDoGrupy.getText()))));
                 Start.client.send(dataPackage);
-                DataPackage powiadomienie=Start.client.receive();
-                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Dodano studenta do grupy");
+                DataPackage powiadomienie = Start.client.receive();
+                if (powiadomienie.getCommand() == DataPackage.Command.SUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Dodano studenta do grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Nie dodano studenta do grupy");
+                } else if (powiadomienie.getCommand() == DataPackage.Command.UNSUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Nie dodano studenta do grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else {
+                } else {
                     MyPopup myPopup = new MyPopup("Nie można połączyć z serwerem");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -216,8 +182,7 @@ public class ManageStudent {
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
-            catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 MyPopup myPopup = new MyPopup("Niepoprawne ID");
                 myPopup.show(borderPane.getScene().getWindow());
                 PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -225,43 +190,38 @@ public class ManageStudent {
                 delay.play();
             }
         });
-
-
-
-        Button dodajTerminGrupy=new Button("Dodaj termin grupy");
+        Button dodajTerminGrupy = new Button("Dodaj termin grupy");
         dodajTerminGrupy.setPrefWidth(WIDTH);
-        TextField idDodajTerminGrupy=new TextField();
+        TextField idDodajTerminGrupy = new TextField();
         idDodajTerminGrupy.setPromptText("ID Grupy");
-        TextField dataDodajTerminGrupy=new TextField();
+        TextField dataDodajTerminGrupy = new TextField();
         dataDodajTerminGrupy.setPromptText("Data: YYYY-MM-DD");
-        gridPane.add(dodajTerminGrupy,0,4);
-        gridPane.add(idDodajTerminGrupy,1,4);
-        gridPane.add(dataDodajTerminGrupy,2,4);
+        gridPane.add(dodajTerminGrupy, 0, 4);
+        gridPane.add(idDodajTerminGrupy, 1, 4);
+        gridPane.add(dataDodajTerminGrupy, 2, 4);
         borderPane.setCenter(gridPane);
         borderPane.setTop(navbar.gridPane);
-
-        dodajTerminGrupy.setOnMouseClicked(event ->{
-
+        dodajTerminGrupy.setOnMouseClicked(event -> {
             try {
-                Date data=java.sql.Date.valueOf(dataDodajTerminGrupy.getText());
-                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_DEADLINE, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idDodajTerminGrupy.getText()), "Data", data.toString())));
+                Date data = java.sql.Date.valueOf(dataDodajTerminGrupy.getText());
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_DEADLINE,
+                        new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idDodajTerminGrupy.getText()),
+                                "Data", data.toString())));
                 Start.client.send(dataPackage);
-                DataPackage powiadomienie=Start.client.receive();
-                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Dodano termin grupy");
+                DataPackage powiadomienie = Start.client.receive();
+                if (powiadomienie.getCommand() == DataPackage.Command.SUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Dodano termin grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Nie dodano terminu grupy");
+                } else if (powiadomienie.getCommand() == DataPackage.Command.UNSUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Nie dodano terminu grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else {
+                } else {
                     MyPopup myPopup = new MyPopup("Nie można połączyć z serwerem");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -270,43 +230,39 @@ public class ManageStudent {
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
-            catch (IllegalArgumentException e){
-                MyPopup myPopup=new MyPopup("Niepoprawne dane");
+            } catch (IllegalArgumentException e) {
+                MyPopup myPopup = new MyPopup("Niepoprawne dane");
                 myPopup.show(borderPane.getScene().getWindow());
                 PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                delay.setOnFinished( a -> myPopup.hide() );
+                delay.setOnFinished(a -> myPopup.hide());
                 delay.play();
             }
         });
-
-        Button dodajGrupa=new Button("Dodaj Grupe");
+        Button dodajGrupa = new Button("Dodaj Grupe");
         dodajGrupa.setPrefWidth(WIDTH);
-        TextField nazwaDodajGrupa=new TextField();
+        TextField nazwaDodajGrupa = new TextField();
         nazwaDodajGrupa.setPromptText("Nazwa Grupy");
-        gridPane.add(dodajGrupa,0,5);
-        gridPane.add(nazwaDodajGrupa,1,5);
-        dodajGrupa.setOnMouseClicked(event ->{
-
+        gridPane.add(dodajGrupa, 0, 5);
+        gridPane.add(nazwaDodajGrupa, 1, 5);
+        dodajGrupa.setOnMouseClicked(event -> {
             try {
-                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_GROUP, new HashMap<>(Map.of("Nazwa", nazwaDodajGrupa.getText())));
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_GROUP,
+                        new HashMap<>(Map.of("Nazwa", nazwaDodajGrupa.getText())));
                 Start.client.send(dataPackage);
-                DataPackage powiadomienie=Start.client.receive();
-                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Dodano grupe");
+                DataPackage powiadomienie = Start.client.receive();
+                if (powiadomienie.getCommand() == DataPackage.Command.SUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Dodano grupe");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Nie dodano grupy");
+                } else if (powiadomienie.getCommand() == DataPackage.Command.UNSUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Nie dodano grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else {
+                } else {
                     MyPopup myPopup = new MyPopup("Nie można połączyć z serwerem");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -315,43 +271,39 @@ public class ManageStudent {
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
-            catch (NumberFormatException e){
-                MyPopup myPopup=new MyPopup("Niepoprawne dane");
+            } catch (NumberFormatException e) {
+                MyPopup myPopup = new MyPopup("Niepoprawne dane");
                 myPopup.show(borderPane.getScene().getWindow());
                 PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                delay.setOnFinished( a -> myPopup.hide() );
+                delay.setOnFinished(a -> myPopup.hide());
                 delay.play();
             }
         });
-
-        Button usunGrupa=new Button("Usun Grupe");
+        Button usunGrupa = new Button("Usun Grupe");
         usunGrupa.setPrefWidth(WIDTH);
-        TextField idUsunGrupa=new TextField();
+        TextField idUsunGrupa = new TextField();
         idUsunGrupa.setPromptText("ID Grupy");
-        gridPane.add(usunGrupa,0,6);
-        gridPane.add(idUsunGrupa,1,6);
-        usunGrupa.setOnMouseClicked(event ->{
-
+        gridPane.add(usunGrupa, 0, 6);
+        gridPane.add(idUsunGrupa, 1, 6);
+        usunGrupa.setOnMouseClicked(event -> {
             try {
-                DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_GROUP, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idUsunGrupa.getText()))));
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_GROUP,
+                        new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idUsunGrupa.getText()))));
                 Start.client.send(dataPackage);
-                DataPackage powiadomienie=Start.client.receive();
-                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Usunieto grupe");
+                DataPackage powiadomienie = Start.client.receive();
+                if (powiadomienie.getCommand() == DataPackage.Command.SUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Usunieto grupe");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
-                    MyPopup myPopup=new MyPopup("Nie usunieto grupy");
+                } else if (powiadomienie.getCommand() == DataPackage.Command.UNSUCCESSFUL) {
+                    MyPopup myPopup = new MyPopup("Nie usunieto grupy");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                    delay.setOnFinished( a -> myPopup.hide() );
+                    delay.setOnFinished(a -> myPopup.hide());
                     delay.play();
-                }
-                else {
+                } else {
                     MyPopup myPopup = new MyPopup("Nie można połączyć z serwerem");
                     myPopup.show(borderPane.getScene().getWindow());
                     PauseTransition delay = new PauseTransition(Duration.seconds(1));
@@ -360,28 +312,13 @@ public class ManageStudent {
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
-            }
-            catch (NumberFormatException e){
-                MyPopup myPopup=new MyPopup("Niepoprawne ID");
+            } catch (NumberFormatException e) {
+                MyPopup myPopup = new MyPopup("Niepoprawne ID");
                 myPopup.show(borderPane.getScene().getWindow());
                 PauseTransition delay = new PauseTransition(Duration.seconds(1));
-                delay.setOnFinished( a -> myPopup.hide() );
+                delay.setOnFinished(a -> myPopup.hide());
                 delay.play();
             }
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 }

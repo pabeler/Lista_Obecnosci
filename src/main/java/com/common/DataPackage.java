@@ -14,30 +14,18 @@ public class DataPackage implements java.io.Serializable {
         this.data = data;
     }
 
-    public DataPackage(Command command) {
-        this.command = command;
-    }
-
     public Command getCommand() {
         return command;
-    }
-
-    public void setCommand(Command command) {
-        this.command = command;
     }
 
     public HashMap<String, Object> getData() {
         return data;
     }
 
-    public void setData(HashMap<String, Object> data) {
-        this.data = data;
-    }
-
     /**
      * Enum that contains the commands that can be sent between the server and the client.
      */
-    public enum Command{
+    public enum Command {
         ADD_STUDENT,
         DELETE_STUDENT,
         ADD_GROUP,

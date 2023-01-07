@@ -1,8 +1,9 @@
 package com.common;
 
-
 import jakarta.persistence.*;
+
 import java.util.Objects;
+
 /**
  * Class that represents a student and is an Entity in the database.
  */
@@ -14,28 +15,23 @@ public class Student implements java.io.Serializable {
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "imie", nullable = true, length = 30)
+    @Column(name = "imie", length = 30)
     private String imie;
     @Basic
-    @Column(name = "nazwisko", nullable = true, length = 30)
+    @Column(name = "nazwisko", length = 30)
     private String nazwisko;
     @Basic
-    @Column(name = "grupa", nullable = true)
+    @Column(name = "grupa")
     private Integer grupa;
     @Basic
-    @Column(name = "obecnosc", nullable = true, length = 30)
+    @Column(name = "obecnosc", length = 30)
     private String obecnosc;
 
-    public Student(){};
-
-
+    public Student() {
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getImie() {
@@ -75,14 +71,14 @@ public class Student implements java.io.Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return id == student.id && Objects.equals(imie, student.imie) && Objects.equals(nazwisko, student.nazwisko) && Objects.equals(grupa, student.grupa);
+        return id == student.id
+                && Objects.equals(imie, student.imie)
+                && Objects.equals(nazwisko, student.nazwisko)
+                && Objects.equals(grupa, student.grupa);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, imie, nazwisko, grupa);
     }
-
-
-
 }

@@ -14,38 +14,29 @@ public class Grupa implements java.io.Serializable {
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
-    @Column(name = "termin", nullable = true)
+    @Column(name = "termin")
     private Date termin;
     @Basic
-    @Column(name = "nazwa", nullable = true, length = 45)
+    @Column(name = "nazwa", length = 45)
     private String nazwa;
-
-    public Grupa(){};
+    public Grupa(){}
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Date getTermin() {
         return termin;
     }
-
     public void setTermin(Date termin) {
         this.termin = termin;
     }
-
     public String getNazwa() {
         return nazwa;
     }
-
     public void setNazwa(String nazwa) {
         this.nazwa = nazwa;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -53,7 +44,6 @@ public class Grupa implements java.io.Serializable {
         Grupa grupa = (Grupa) o;
         return id == grupa.id && Objects.equals(termin, grupa.termin);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, termin);

@@ -19,6 +19,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashMap;
 
+
 /**
  * Class that handles the client's requests.
  */
@@ -205,7 +206,6 @@ public class ClientHandler extends Thread {
             // closing resources
             this.dis.close();
             this.dos.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -17,7 +17,6 @@ public class Client {
     public Client() throws IOException {
     }
 
-
     public void send(DataPackage dataPackage) throws IOException {
         objectOutputStream.writeObject(dataPackage);
     }
@@ -25,12 +24,10 @@ public class Client {
     public DataPackage receive() throws IOException, ClassNotFoundException {
         return (DataPackage) objectInputStream.readObject();
     }
+
     void close() throws IOException {
         socket.close();
         objectInputStream.close();
         objectOutputStream.close();
     }
-
-
 }
-

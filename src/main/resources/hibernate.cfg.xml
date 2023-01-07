@@ -4,10 +4,10 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:mysql://localhost:3306/lista_obecnosci_jpa</property>
+    <property name="connection.url">jdbc:mysql://185.198.1.86:3306/lista_obecnosci_jpa</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-    <property name="connection.username">root</property>
-    <property name="connection.password"></property>
+    <property name="connection.username">zpo</property>
+    <property name="connection.password">zpo2</property>
     <mapping class="com.common.Student"/>
     <mapping class="com.common.Grupa"/>
     <!-- <property name="connection.username"/> -->

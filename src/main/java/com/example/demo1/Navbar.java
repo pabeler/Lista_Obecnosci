@@ -26,8 +26,8 @@ public class Navbar{
 
 
         ColumnConstraints columnConstraints = new ColumnConstraints();
-//        columnConstraints.setPercentWidth(33.3);
-        columnConstraints.setPercentWidth(50);
+        columnConstraints.setPercentWidth(33.3);
+//        columnConstraints.setPercentWidth(50);
 
 
 
@@ -36,23 +36,30 @@ public class Navbar{
         sprawdzObecnosc.setOnMouseClicked(event -> {
             sprawdzObecnosc();
         });
-        Button wyswietlObecnosc=new Button("Wyświetl obecność");
-        wyswietlObecnosc.setPrefSize(WIDTH,HEIGHT);
-//        gridPane.getChildren().addAll(zarzadzaj,sprawdzObecnosc,wyswietlObecnosc);
-        gridPane.getChildren().addAll(zarzadzaj,sprawdzObecnosc);
+        Button wyswietlGrupy=new Button("Wyświetl Grupy");
+        wyswietlGrupy.setPrefSize(WIDTH,HEIGHT);
+        wyswietlGrupy.setOnMouseClicked(event -> {
+            wyswietlGrupy();
+        });
+        gridPane.getChildren().addAll(zarzadzaj,sprawdzObecnosc,wyswietlGrupy);
+//        gridPane.getChildren().addAll(zarzadzaj,sprawdzObecnosc);
         RowConstraints rowConstraints = new RowConstraints();
         rowConstraints.setPercentHeight(100);
-//        gridPane.getColumnConstraints().addAll(columnConstraints, columnConstraints, columnConstraints);
-        gridPane.getColumnConstraints().addAll(columnConstraints, columnConstraints);
+        gridPane.getColumnConstraints().addAll(columnConstraints, columnConstraints, columnConstraints);
+//        gridPane.getColumnConstraints().addAll(columnConstraints, columnConstraints);
         gridPane.getRowConstraints().addAll(rowConstraints);
         GridPane.setConstraints(zarzadzaj,0,0);
         GridPane.setConstraints(sprawdzObecnosc,1,0);
-//        GridPane.setConstraints(wyswietlObecnosc,2,0);
+        GridPane.setConstraints(wyswietlGrupy,2,0);
         gridPane.setAlignment(javafx.geometry.Pos.CENTER);
         gridPane.setPrefSize(Control.USE_PREF_SIZE,Control.USE_PREF_SIZE);
 
 
 
+    }
+
+    private void wyswietlGrupy() {
+        Start.scene.setRoot(new WyswietlGrupy().borderPane);
     }
 
     private void zarzadzaj() {

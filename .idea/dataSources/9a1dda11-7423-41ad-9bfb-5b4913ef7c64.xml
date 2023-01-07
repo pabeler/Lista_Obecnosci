@@ -1332,7 +1332,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <UnderlyingIndexName>grupy_id_uindex</UnderlyingIndexName>
     </key>
     <column id="348" parent="340" name="id">
-      <AutoIncrement>6</AutoIncrement>
+      <AutoIncrement>7</AutoIncrement>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>

@@ -53,19 +53,29 @@ public class ManageStudent {
 
 
         gridPane.add(dodaj,0,0);
-        gridPane.add(idDodaj,1,0);
-        gridPane.add(imieDodaj,2,0);
-        gridPane.add(nazwiskoDodaj,3,0);
-        gridPane.add(grupaDodaj,4,0);
+        gridPane.add(imieDodaj,1,0);
+        gridPane.add(nazwiskoDodaj,2,0);
+        gridPane.add(grupaDodaj,3,0);
 
         Button usun=new Button("Usuń Studenta");
         usun.setPrefWidth(WIDTH);
+
         TextField idUsun=new TextField();
         idUsun.setPromptText("ID Studenta");
         gridPane.add(usun,0,1);
         gridPane.add(idUsun,1,1);
+        usun.setOnMouseClicked(event ->{
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_STUDENT, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsun.getText()))));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
 
         Button usunZGrupy=new Button("Usuń Studenta z grupy");
+
         usunZGrupy.setPrefWidth(WIDTH);
         TextField idUsunZGrupyStudent=new TextField();
         TextField idUsunZGrupyGrupa=new TextField();
@@ -74,6 +84,15 @@ public class ManageStudent {
         gridPane.add(usunZGrupy,0,2);
         gridPane.add(idUsunZGrupyStudent,1,2);
         gridPane.add(idUsunZGrupyGrupa,2,2);
+        usunZGrupy.setOnMouseClicked(event ->{
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodaj.getText()))));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
 
         Button dodajDoGrupy=new Button("Dodaj Studenta do grupy");
         dodajDoGrupy.setPrefWidth(WIDTH);
@@ -103,7 +122,7 @@ public class ManageStudent {
         Button dodajGrupa=new Button("Dodaj Grupe");
         dodajGrupa.setPrefWidth(WIDTH);
         TextField idDodajGrupa=new TextField();
-        idDodajGrupa.setPromptText("ID Grupy");
+        idDodajGrupa.setPromptText("Nazwa Grupy");
         gridPane.add(dodajGrupa,0,5);
         gridPane.add(idDodajGrupa,1,5);
 

@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import com.common.DataPackage;
+import com.common.Grupa;
 import com.common.Student;
 import javafx.geometry.Pos;
 import javafx.scene.control.ListView;
@@ -20,11 +21,16 @@ public class WyswietlGrupy {
         listView.setPrefSize(600,500);
 
         try {
-            Start.client.send(new DataPackage(DataPackage.Command.GET_ABSENCE_LIST,null));
+            Start.client.send(new DataPackage(DataPackage.Command.GET_GROUP_LIST,null));
             DataPackage dataPackage=Start.client.receive();
             for(String o:dataPackage.getData().keySet()){
-                Student student =(Student) dataPackage.getData().get(o);
-                listView.getItems().addAll(new StudentElement(student.getImie(),student.getNazwisko(),student.getId(),student.getGrupa(),student.getObecnosc()));
+                Grupa grupa =(Grupa) dataPackage.getData().get(o);
+                if (grupa.getTermin()==null){
+                    listView.getItems().addAll(new GrupaElement(grupa.getNazwa(),grupa.getId(),null));
+                }
+                else {
+                    listView.getItems().addAll(new GrupaElement(grupa.getNazwa(),grupa.getId(),grupa.getTermin().toString()));
+                }
 
             }
         } catch (IOException | ClassNotFoundException e) {

@@ -38,7 +38,12 @@ public class SprawdzObecnosci {
             DataPackage dataPackage=Start.client.receive();
             for(String o:dataPackage.getData().keySet()){
                 Student student =(Student) dataPackage.getData().get(o);
-                listView.getItems().addAll(new StudentElement(student.getImie(),student.getNazwisko(),student.getId(),student.getGrupa(),student.getObecnosc()));
+                if (student.getGrupa()==null){
+                    listView.getItems().addAll(new StudentElement(student.getImie(),student.getNazwisko(),student.getId(),0,student.getObecnosc()));
+                }
+                else {
+                    listView.getItems().addAll(new StudentElement(student.getImie(),student.getNazwisko(),student.getId(),student.getGrupa(),student.getObecnosc()));
+                }
 
             }
         } catch (IOException|ClassNotFoundException e) {

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "grupy")
-public class Grupa {
+public class Grupa implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)

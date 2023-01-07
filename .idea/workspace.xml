@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Poprawka">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyGrupy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/GrupaElement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/StudentElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/StudentElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyGrupy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,6 +226,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java</url>
           <line>148</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Dodanie popup do 2" />
+    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Dodanie popup do 2">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/MyPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Start.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -137,8 +145,8 @@
       <list>
         <item itemvalue="Application.Start" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="Application.Start" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.Start" />
         <item itemvalue="Application.Start" />
       </list>
     </recent_temporary>
@@ -155,6 +163,7 @@
       <workItem from="1673037401347" duration="4622000" />
       <workItem from="1673042028364" duration="3200000" />
       <workItem from="1673086996782" duration="1537000" />
+      <workItem from="1673091626988" duration="5093000" />
     </task>
     <task id="LOCAL-00001" summary="NEW">
       <created>1673035249743</created>
@@ -202,7 +211,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java</url>
-          <line>37</line>
+          <line>36</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

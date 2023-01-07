@@ -9,9 +9,7 @@ import javafx.scene.control.Control;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -28,6 +26,7 @@ public class SprawdzObecnosci {
         navbar.gridPane.setAlignment(Pos.TOP_CENTER);
         borderPane.setTop(navbar.gridPane);
         ListView<Object> listView=new ListView<>();
+        listView.setPrefSize(600,500);
         //change listview cell height
 //        listView.getItems().addAll(new TytulyObecnosc());
 
@@ -43,8 +42,17 @@ public class SprawdzObecnosci {
 
             }
         } catch (IOException|ClassNotFoundException e) {
-            Popup popup=new Popup();
-            popup.getContent().add(new Text("Nie można połączyć z serwerem"));
+            MyPopup myPopup=new MyPopup("Błąd połączenia z serwerem");
+            myPopup.show(Start.scene.getWindow());
+            try {
+                Start.client.close();
+            }
+            catch (IOException ioException) {
+                //
+            }
+            return;
+
+
         }
 
 

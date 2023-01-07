@@ -182,6 +182,22 @@ public class ClientHandler extends Thread {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
                         }
                     }
+                    case GET_GROUP_LIST -> {
+                        try {
+                            CriteriaBuilder cb = em.getCriteriaBuilder();
+                            CriteriaQuery<Grupa> cq = cb.createQuery(Grupa.class);
+                            Root<Grupa> rootEntry = cq.from(Grupa.class);
+                            CriteriaQuery<Grupa> all = cq.select(rootEntry);
+                            TypedQuery<Grupa> allQuery = em.createQuery(all);
+                            HashMap<String, Object> groups = new HashMap<>();
+                            for (Grupa g : allQuery.getResultList()) {
+                                groups.put(String.valueOf(g.getId()), g);
+                            }
+                            dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, groups));
+                        } catch (Exception e) {
+                            dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
+                        }
+                    }
                     default -> dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
                 }
             } catch (IOException | ClassNotFoundException e) {

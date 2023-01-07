@@ -61,14 +61,12 @@ public class Navbar{
     private void wyswietlGrupy() {
 
         Start.scene.setRoot(new WyswietlGrupy().borderPane);
-        Start.scene.getWindow().setHeight(Control.USE_PREF_SIZE);
-        Start.scene.getWindow().setWidth(Control.USE_PREF_SIZE);
+        Start.scene.getWindow().sizeToScene();
     }
 
     private void zarzadzaj() {
         Start.scene.setRoot(new ManageStudent().borderPane);
-        Start.scene.getWindow().setHeight(Control.USE_COMPUTED_SIZE);
-        Start.scene.getWindow().setWidth(Control.USE_COMPUTED_SIZE);
+        Start.scene.getWindow().sizeToScene();
     }
 
     private void sprawdzObecnosc() {

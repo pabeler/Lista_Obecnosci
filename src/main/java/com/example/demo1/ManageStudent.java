@@ -126,14 +126,11 @@ public class ManageStudent {
 
         usunZGrupy.setPrefWidth(WIDTH);
         TextField idUsunZGrupyStudent=new TextField();
-        TextField idUsunZGrupyGrupa=new TextField();
         idUsunZGrupyStudent.setPromptText("ID Studenta");
-        idUsunZGrupyGrupa.setPromptText("ID Grupy");
         gridPane.add(usunZGrupy,0,2);
         gridPane.add(idUsunZGrupyStudent,1,2);
-        gridPane.add(idUsunZGrupyGrupa,2,2);
         usunZGrupy.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()), "ID_Grupy", Integer.valueOf(idUsunZGrupyGrupa.getText()))));
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()))));
             try {
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();

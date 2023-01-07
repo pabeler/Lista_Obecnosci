@@ -44,7 +44,7 @@ public class WyswietlGrupy {
 
 //        borderPane.setCenter(new TytulyObecnosc());
         borderPane.setBottom(listView);
-        borderPane.setCenter(new TytulyObecnosc());
+        borderPane.setCenter(new TytulyGrupy());
 
     }
 

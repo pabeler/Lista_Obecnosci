@@ -106,13 +106,17 @@ public class ClientHandler extends Thread {
                         break;
                     case ADD_STUDENT_TO_GROUP:
                         //Todo: add student to group in database;
-                        Student student1 = em.find(Student.class, data.get("ID_Studenta"));
-                        em.detach(student1);
-                        student1.setGrupa((int) data.get("ID_Grupy"));
-                        em.getTransaction().begin();
-                        em.merge(student1);
-                        em.getTransaction().commit();
-                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
+                        try {
+                            Student student1 = em.find(Student.class, data.get("ID_Studenta"));
+                            em.detach(student1);
+                            student1.setGrupa((int) data.get("ID_Grupy"));
+                            em.getTransaction().begin();
+                            em.merge(student1);
+                            em.getTransaction().commit();
+                            dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
+                        } catch (Exception e) {
+                            dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
+                        }
                         break;
                     case REMOVE_STUDENT_FROM_GROUP:
                         //Todo: remove student from group in database;

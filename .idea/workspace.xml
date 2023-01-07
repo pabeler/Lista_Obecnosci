@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Dodanie popup do 2" />
+    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Add successful and unsuccessful command">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +96,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.backend.Server" />
-      <module name="demo1" />
+      <module name="Lista_Obecnosci" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.backend.*" />
@@ -107,7 +111,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.example.demo1.Start" />
-      <module name="demo1" />
+      <module name="Lista_Obecnosci" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.demo1.*" />
@@ -196,19 +200,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java</url>
           <line>37</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="4" />
+          <line>71</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

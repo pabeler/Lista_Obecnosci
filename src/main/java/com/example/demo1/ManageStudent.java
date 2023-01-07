@@ -1,6 +1,7 @@
 package com.example.demo1;
 
 import com.common.DataPackage;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -49,7 +50,21 @@ public class ManageStudent {
                     "ID_Grupy", Integer.valueOf(grupaDodaj.getText()))));
             try {
                 Start.client.send(dataPackage);
-                Start.client.receive();
+                DataPackage powiadomienie=Start.client.receive();
+                if(powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Dodano studenta"));
+                    popup.show(borderPane.getScene().getWindow());
+                }
+                else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Nie dodano studenta"));
+                    popup.show(borderPane.getScene().getWindow());
+                }
+                else {
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Wystąpił błąd"));
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -74,12 +89,16 @@ public class ManageStudent {
             try {
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
-                if (powiadomienie.getCommand()==DataPackage.Command.Succesfull){
+                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
                     Popup popup=new Popup();
                     popup.getContent().add(new Text("Usunięto studenta"));
-                } else if (powiadomienie.getCommand()==DataPackage.Command.Unsuccesfull){
+                } else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
                     Popup popup=new Popup();
                     popup.getContent().add(new Text("Nie usunięto studenta"));
+                }
+                else {
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Wystąpił błąd"));
                 }
 
             } catch (IOException | ClassNotFoundException e) {
@@ -101,7 +120,18 @@ public class ManageStudent {
             DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()), "ID_Grupy", Integer.valueOf(idUsunZGrupyGrupa.getText()))));
             try {
                 Start.client.send(dataPackage);
-                Start.client.receive();
+                DataPackage powiadomienie=Start.client.receive();
+                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Usunięto studenta z grupy"));
+                } else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Nie usunięto studenta z grupy"));
+                }
+                else {
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Wystąpił błąd"));
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -120,7 +150,18 @@ public class ManageStudent {
             DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT_TO_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodajDoGrupy.getText()), "ID_Grupy", Integer.valueOf(grupaDodajDoGrupy.getText()))));
             try {
                 Start.client.send(dataPackage);
-                Start.client.receive();
+                DataPackage powiadomienie=Start.client.receive();
+                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Dodano studenta do grupy"));
+                } else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Nie dodano studenta do grupy"));
+                }
+                else {
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Wystąpił błąd"));
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -143,7 +184,18 @@ public class ManageStudent {
             DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_DEADLINE, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idDodajTerminGrupy.getText()), "Data", dataDodajTerminGrupy.getText())));
             try {
                 Start.client.send(dataPackage);
-                Start.client.receive();
+                DataPackage powiadomienie=Start.client.receive();
+                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Dodano termin grupy"));
+                } else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Nie dodano terminu grupy"));
+                }
+                else {
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Wystąpił błąd"));
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -159,7 +211,18 @@ public class ManageStudent {
             DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_GROUP, new HashMap<>(Map.of("Nazwa", nazwaDodajGrupa.getText())));
             try {
                 Start.client.send(dataPackage);
-                Start.client.receive();
+                DataPackage powiadomienie=Start.client.receive();
+                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Dodano grupe"));
+                } else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Nie dodano grupy"));
+                }
+                else {
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Wystąpił błąd"));
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -175,7 +238,18 @@ public class ManageStudent {
             DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_GROUP, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idUsunGrupa.getText()))));
             try {
                 Start.client.send(dataPackage);
-                Start.client.receive();
+                DataPackage powiadomienie=Start.client.receive();
+                if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Usunieto grupe"));
+                } else if (powiadomienie.getCommand()==DataPackage.Command.UNSUCCESSFUL){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Nie usunieto grupy"));
+                }
+                else {
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Wystąpił błąd"));
+                }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

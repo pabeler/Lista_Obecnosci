@@ -1,5 +1,8 @@
 package com.example.demo1;
 
+import com.common.DataPackage;
+import com.common.Student;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Control;
@@ -9,7 +12,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.HashMap;
 
 public class SprawdzObecnosci {
     BorderPane borderPane=new BorderPane();
@@ -26,8 +34,19 @@ public class SprawdzObecnosci {
 //        listView.prefHeightProperty().bind(listView.fixedCellSizeProperty().multiply(20));
 
 //        listView.getItems().addAll(new TytulyObecnosc());
-        listView.getItems().addAll(new StudentElement("Mariusz","Janyszek",1,"1"));
-        listView.getItems().addAll(new StudentElement("Test","Test",2,"1"));
+        try {
+            Start.client.send(new DataPackage(DataPackage.Command.GET_ABSENCE_LIST,null));
+            DataPackage dataPackage=Start.client.receive();
+            for(String o:dataPackage.getData().keySet()){
+                Student student =(Student) dataPackage.getData().get(o);
+                listView.getItems().addAll(new StudentElement(student.getImie(),student.getNazwisko(),student.getId(),student.getGrupa(),student.getObecnosc()));
+
+            }
+        } catch (IOException|ClassNotFoundException e) {
+            Popup popup=new Popup();
+            popup.getContent().add(new Text("Nie można połączyć z serwerem"));
+        }
+
 
 //        borderPane.setCenter(new TytulyObecnosc());
         borderPane.setBottom(listView);

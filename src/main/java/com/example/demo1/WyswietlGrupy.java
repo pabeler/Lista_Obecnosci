@@ -18,8 +18,8 @@ public class WyswietlGrupy {
 //        listView.prefHeightProperty().bind(listView.fixedCellSizeProperty().multiply(20));
 
 //        listView.getItems().addAll(new TytulyObecnosc());
-        listView.getItems().addAll(new StudentElement("Mariusz","Janyszek",1,"1"));
-        listView.getItems().addAll(new StudentElement("Test","Test",2,"1"));
+//        listView.getItems().addAll(new StudentElement("Mariusz","Janyszek",1,"1"));
+//        listView.getItems().addAll(new StudentElement("Test","Test",2,"1"));
 
 //        borderPane.setCenter(new TytulyObecnosc());
         borderPane.setBottom(listView);

@@ -12,16 +12,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StudentElement extends GridPane {
-    StudentElement(String imie, String nazwisko, int id, String grupa){
+    StudentElement(String imie, String nazwisko, int id, int grupa, String obecnosc) {
         Text textImie=new Text(imie);
         Text textNazwisko=new Text(nazwisko);
         Text textId=new Text(String.valueOf(id));
-        Text textGrupa=new Text(grupa);
+        Text textGrupa=new Text(String.valueOf(grupa));
         ChoiceBox<Object> choiceBox=new ChoiceBox<>();
 
 
         choiceBox.getItems().addAll("Obecny","Nieobecny","Spozniony");
-        choiceBox.setValue("Obecny");
+        choiceBox.setValue(obecnosc);
         choiceBox.setOnAction(event -> {
             System.out.println(choiceBox.getValue());
             DataPackage dataPackage = new DataPackage(DataPackage.Command.CHECK_ABSENCE, new HashMap<>(Map.of("Imie", imie, "Nazwisko", nazwisko, "ID_Grupy", grupa, "Obecnosc", choiceBox.getValue())));

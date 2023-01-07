@@ -17,31 +17,25 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.HashMap;
+
 /**
  * Class that handles the client's requests.
  */
 public class ClientHandler extends Thread {
-    //private String name;
     private Socket s;
     private ObjectInputStream dis;
     private ObjectOutputStream dos;
     private boolean isRunning = true;
     private SessionFactory sessionFactory;
 
-
     public ClientHandler(Socket s, ObjectInputStream dis, ObjectOutputStream dos) {
-        //this.name = name;
         this.s = s;
         this.dis = dis;
         this.dos = dos;
     }
 
     public void run() {
-
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure("hibernate.cfg.xml") // configures settings from hibernate.cfg.xml
                 .build();
@@ -53,8 +47,6 @@ public class ClientHandler extends Thread {
             StandardServiceRegistryBuilder.destroy(registry);
         }
         Session em = sessionFactory.openSession();
-
-
         while (isRunning) {
             try {
                 // Ask user what he wants
@@ -119,7 +111,7 @@ public class ClientHandler extends Thread {
                     }
                     case ADD_STUDENT_TO_GROUP -> {
                         try {
-                            Grupa grupa = em.find(Grupa.class, data.get("ID_Grupy"));
+                            em.find(Grupa.class, data.get("ID_Grupy"));
                             Student student1 = em.find(Student.class, data.get("ID_Studenta"));
                             em.detach(student1);
                             student1.setGrupa((int) data.get("ID_Grupy"));
@@ -209,7 +201,6 @@ public class ClientHandler extends Thread {
                 break;
             }
         }
-
         try {
             // closing resources
             this.dis.close();
@@ -220,37 +211,7 @@ public class ClientHandler extends Thread {
         }
     }
 
-
     public Socket getSocket() {
         return s;
     }
-
-    public void setSocket(Socket s) {
-        this.s = s;
-    }
-
-    public ObjectInputStream getDis() {
-        return dis;
-    }
-
-    public void setDis(ObjectInputStream dis) {
-        this.dis = dis;
-    }
-
-    public ObjectOutputStream getDos() {
-        return dos;
-    }
-
-    public void setDos(ObjectOutputStream dos) {
-        this.dos = dos;
-    }
-
-    public boolean isRunning() {
-        return isRunning;
-    }
-
-    public void setRunning(boolean running) {
-        isRunning = running;
-    }
-
 }

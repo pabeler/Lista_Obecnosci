@@ -44,5 +44,6 @@ public class DataPackage implements java.io.Serializable {
         EXIT_PROGRAM,
         SUCCESSFUL,
         UNSUCCESSFUL,
+        GET_GROUP_LIST,
     }
 }

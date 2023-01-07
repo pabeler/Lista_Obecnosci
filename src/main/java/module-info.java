@@ -1,4 +1,4 @@
-module com.example.demo {
+module com.example.demo1 {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -10,7 +10,6 @@ module com.example.demo {
     requires org.hibernate.orm.core;
     requires java.naming;
     requires jakarta.persistence;
-
 
     opens com.common to org.hibernate.orm.core;
     opens com.example.demo1 to javafx.fxml;

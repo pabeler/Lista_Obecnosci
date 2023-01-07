@@ -17,7 +17,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.Date;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -47,7 +50,7 @@ public class ClientHandler extends Thread {
             // so destroy it manually.
             StandardServiceRegistryBuilder.destroy(registry);
         }
-        Session em = sessionFactory.openSession();
+        Session session = sessionFactory.openSession();
         while (isRunning) {
             try {
                 // Ask user what he wants
@@ -65,60 +68,79 @@ public class ClientHandler extends Thread {
                     }
                     case ADD_STUDENT -> {
                         try {
-                            em.getTransaction().begin();
+                            if (((String) data.get("Imie")).isEmpty() || ((String) data.get("Nazwisko")).isEmpty()) {
+                                throw new Exception("Imie i nazwisko nie moga byc puste");
+                            }
                             Student student = new Student();
                             student.setImie((String) data.get("Imie"));
                             student.setNazwisko((String) data.get("Nazwisko"));
                             student.setGrupa(null);
-                            em.persist(student);
-                            em.getTransaction().commit();
+                            session.getTransaction().begin();
+                            session.persist(student);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
                         }
                     }
                     case DELETE_STUDENT -> {
                         try {
-                            em.getTransaction().begin();
-                            em.remove(em.find(Student.class, data.get("ID_Studenta")));
-                            em.getTransaction().commit();
+                            Student student = session.find(Student.class, data.get("ID_Studenta"));
+                            if (student == null) {
+                                throw new Exception("Nie ma takiego studenta");
+                            }
+                            session.getTransaction().begin();
+                            session.remove(student);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
                         }
                     }
                     case ADD_GROUP -> {
                         try {
-                            em.getTransaction().begin();
+                            if (data.get("Nazwa") == null) {
+                                throw new Exception("Nazwa grupy nie moze byc pusta");
+                            }
                             Grupa grupa = new Grupa();
                             grupa.setNazwa((String) data.get("Nazwa"));
                             grupa.setTermin(null);
-                            em.persist(grupa);
-                            em.getTransaction().commit();
+                            session.getTransaction().begin();
+                            session.persist(grupa);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
                         }
                     }
                     case DELETE_GROUP -> {
                         try {
-                            em.getTransaction().begin();
-                            em.remove(em.find(Grupa.class, data.get("ID_Grupy")));
-                            em.getTransaction().commit();
+                            Grupa grupa = session.find(Grupa.class, data.get("ID_Grupy"));
+                            if (grupa == null) {
+                                throw new Exception("Nie ma takiej grupy");
+                            }
+                            session.getTransaction().begin();
+                            session.remove(grupa);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
-                        } catch (IOException e) {
+                        } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
                         }
                     }
                     case ADD_STUDENT_TO_GROUP -> {
                         try {
-                            em.find(Grupa.class, data.get("ID_Grupy"));
-                            Student student1 = em.find(Student.class, data.get("ID_Studenta"));
-                            em.detach(student1);
-                            student1.setGrupa((int) data.get("ID_Grupy"));
-                            em.getTransaction().begin();
-                            em.merge(student1);
-                            em.getTransaction().commit();
+                            if (session.find(Grupa.class, data.get("ID_Grupy")) == null) {
+                                throw new Exception("Nie ma takiej grupy");
+                            }
+                            Student student = session.find(Student.class, data.get("ID_Studenta"));
+                            if (student == null) {
+                                throw new Exception("Nie ma takiego studenta");
+                            }
+                            session.getTransaction().begin();
+                            session.detach(student);
+                            student.setGrupa((int) data.get("ID_Grupy"));
+                            session.merge(student);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
@@ -126,12 +148,15 @@ public class ClientHandler extends Thread {
                     }
                     case REMOVE_STUDENT_FROM_GROUP -> {
                         try {
-                            Student student2 = em.find(Student.class, data.get("ID_Studenta"));
-                            em.detach(student2);
-                            student2.setGrupa(null);
-                            em.getTransaction().begin();
-                            em.merge(student2);
-                            em.getTransaction().commit();
+                            Student student = session.find(Student.class, data.get("ID_Studenta"));
+                            if (student == null) {
+                                throw new Exception("Nie ma takiego studenta");
+                            }
+                            session.getTransaction().begin();
+                            session.detach(student);
+                            student.setGrupa(null);
+                            session.merge(student);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
@@ -139,12 +164,24 @@ public class ClientHandler extends Thread {
                     }
                     case ADD_DEADLINE -> {
                         try {
-                            Grupa grupa1 = em.find(Grupa.class, data.get("ID_Grupy"));
-                            em.detach(grupa1);
-                            grupa1.setTermin(java.sql.Date.valueOf((String) data.get("Data")));
-                            em.getTransaction().begin();
-                            em.merge(grupa1);
-                            em.getTransaction().commit();
+                            Pattern DATE_PATTERN = Pattern.compile(
+                                    "^((2000|2400|2800|(19|2[0-9])(0[48]|[2468][048]|[13579][26]))-02-29)$"
+                                            + "|^(((19|2[0-9])[0-9]{2})-02-(0[1-9]|1[0-9]|2[0-8]))$"
+                                            + "|^(((19|2[0-9])[0-9]{2})-(0[13578]|10|12)-(0[1-9]|[12][0-9]|3[01]))$"
+                                            + "|^(((19|2[0-9])[0-9]{2})-(0[469]|11)-(0[1-9]|[12][0-9]|30))$");
+                            Matcher matcher = DATE_PATTERN.matcher((String) data.get("Data"));
+                            if (!matcher.matches()) {
+                                throw new Exception("Niepoprawna data");
+                            }
+                            Grupa grupa = session.find(Grupa.class, data.get("ID_Grupy"));
+                            if (grupa == null) {
+                                throw new Exception("Nie ma takiej grupy");
+                            }
+                            grupa.setTermin(Date.valueOf((String) data.get("Data")));
+                            session.getTransaction().begin();
+                            session.detach(grupa);
+                            session.merge(grupa);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
@@ -152,12 +189,18 @@ public class ClientHandler extends Thread {
                     }
                     case CHECK_ABSENCE -> {
                         try {
-                            Student student3 = em.find(Student.class, data.get("ID_Studenta"));
-                            em.detach(student3);
-                            student3.setObecnosc((String) data.get("Obecnosc"));
-                            em.getTransaction().begin();
-                            em.merge(student3);
-                            em.getTransaction().commit();
+                            if (data.get("Obecnosc") == null) {
+                                throw new Exception("Obecnosc nie moze byc pusta");
+                            }
+                            Student student = session.find(Student.class, data.get("ID_Studenta"));
+                            if (student == null) {
+                                throw new Exception("Nie ma takiego studenta");
+                            }
+                            session.getTransaction().begin();
+                            session.detach(student);
+                            student.setObecnosc((String) data.get("Obecnosc"));
+                            session.merge(student);
+                            session.getTransaction().commit();
                             dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         } catch (Exception e) {
                             dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
@@ -165,11 +208,11 @@ public class ClientHandler extends Thread {
                     }
                     case GET_ABSENCE_LIST -> {
                         try {
-                            CriteriaBuilder cb = em.getCriteriaBuilder();
+                            CriteriaBuilder cb = session.getCriteriaBuilder();
                             CriteriaQuery<Student> cq = cb.createQuery(Student.class);
                             Root<Student> rootEntry = cq.from(Student.class);
                             CriteriaQuery<Student> all = cq.select(rootEntry);
-                            TypedQuery<Student> allQuery = em.createQuery(all);
+                            TypedQuery<Student> allQuery = session.createQuery(all);
                             HashMap<String, Object> students = new HashMap<>();
                             for (Student s : allQuery.getResultList()) {
                                 students.put(String.valueOf(s.getId()), s);
@@ -181,11 +224,11 @@ public class ClientHandler extends Thread {
                     }
                     case GET_GROUP_LIST -> {
                         try {
-                            CriteriaBuilder cb = em.getCriteriaBuilder();
+                            CriteriaBuilder cb = session.getCriteriaBuilder();
                             CriteriaQuery<Grupa> cq = cb.createQuery(Grupa.class);
                             Root<Grupa> rootEntry = cq.from(Grupa.class);
                             CriteriaQuery<Grupa> all = cq.select(rootEntry);
-                            TypedQuery<Grupa> allQuery = em.createQuery(all);
+                            TypedQuery<Grupa> allQuery = session.createQuery(all);
                             HashMap<String, Object> groups = new HashMap<>();
                             for (Grupa g : allQuery.getResultList()) {
                                 groups.put(String.valueOf(g.getId()), g);

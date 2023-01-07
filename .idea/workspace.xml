@@ -4,24 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Delete useless methods and reformat code for ClientHandler class">
+    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Reformat code for all classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/common/DataPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/common/DataPackage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/common/Grupa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/common/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/common/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/GrupaElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/GrupaElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/MyPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/MyPopup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/StudentElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/StudentElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyGrupy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyObecnosc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyObecnosc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673110354446</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Reformat code for all classes">
+      <created>1673112747192</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673112747192</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,15 +225,16 @@
     <MESSAGE value="Poprawka" />
     <MESSAGE value="Fix code for add_deadline command" />
     <MESSAGE value="Delete useless methods and reformat code for ClientHandler class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete useless methods and reformat code for ClientHandler class" />
+    <MESSAGE value="Reformat code for all classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformat code for all classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="9" />
+          <line>60</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -12,6 +12,7 @@ import javafx.stage.Popup;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,10 +45,11 @@ public class ManageStudent {
         idDodaj.setPromptText("ID Studenta");
 
         dodaj.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT, new HashMap<>(Map.of(
-                    "Imie", imieDodaj.getText(),
-                    "Nazwisko", nazwiskoDodaj.getText())));
+
             try {
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT, new HashMap<>(Map.of(
+                        "Imie", imieDodaj.getText(),
+                        "Nazwisko", nazwiskoDodaj.getText())));
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
                 if(powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
@@ -91,8 +93,9 @@ public class ManageStudent {
         gridPane.add(usun,0,1);
         gridPane.add(idUsun,1,1);
         usun.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_STUDENT, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsun.getText()))));
+
             try {
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_STUDENT, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsun.getText()))));
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
                 if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
@@ -120,6 +123,13 @@ public class ManageStudent {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            catch (NumberFormatException e){
+                MyPopup myPopup=new MyPopup("Niepoprawne ID");
+                myPopup.show(borderPane.getScene().getWindow());
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished( a -> myPopup.hide() );
+                delay.play();
+            }
         });
 
         Button usunZGrupy=new Button("Usuń Studenta z grupy");
@@ -130,8 +140,9 @@ public class ManageStudent {
         gridPane.add(usunZGrupy,0,2);
         gridPane.add(idUsunZGrupyStudent,1,2);
         usunZGrupy.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()))));
+
             try {
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()))));
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
                 if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
@@ -158,6 +169,13 @@ public class ManageStudent {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            catch (NumberFormatException e){
+                MyPopup myPopup = new MyPopup("Niepoprawne ID");
+                myPopup.show(borderPane.getScene().getWindow());
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished(a -> myPopup.hide());
+                delay.play();
+            }
         });
 
         Button dodajDoGrupy=new Button("Dodaj Studenta do grupy");
@@ -170,8 +188,9 @@ public class ManageStudent {
         gridPane.add(idDodajDoGrupy,1,3);
         gridPane.add(grupaDodajDoGrupy,2,3);
         dodajDoGrupy.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT_TO_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodajDoGrupy.getText()), "ID_Grupy", Integer.valueOf(grupaDodajDoGrupy.getText()))));
+
             try {
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT_TO_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodajDoGrupy.getText()), "ID_Grupy", Integer.valueOf(grupaDodajDoGrupy.getText()))));
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
                 if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
@@ -198,6 +217,13 @@ public class ManageStudent {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            catch (NumberFormatException e){
+                MyPopup myPopup = new MyPopup("Niepoprawne ID");
+                myPopup.show(borderPane.getScene().getWindow());
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished(a -> myPopup.hide());
+                delay.play();
+            }
         });
 
 
@@ -207,15 +233,18 @@ public class ManageStudent {
         TextField idDodajTerminGrupy=new TextField();
         idDodajTerminGrupy.setPromptText("ID Grupy");
         TextField dataDodajTerminGrupy=new TextField();
-        dataDodajTerminGrupy.setPromptText("Data");
+        dataDodajTerminGrupy.setPromptText("Data: YYYY-MM-DD");
         gridPane.add(dodajTerminGrupy,0,4);
         gridPane.add(idDodajTerminGrupy,1,4);
         gridPane.add(dataDodajTerminGrupy,2,4);
         borderPane.setCenter(gridPane);
         borderPane.setTop(navbar.gridPane);
+
         dodajTerminGrupy.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_DEADLINE, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idDodajTerminGrupy.getText()), "Data", dataDodajTerminGrupy.getText())));
+
             try {
+                Date data=java.sql.Date.valueOf(dataDodajTerminGrupy.getText());
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_DEADLINE, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idDodajTerminGrupy.getText()), "Data", data.toString())));
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
                 if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
@@ -242,6 +271,13 @@ public class ManageStudent {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            catch (IllegalArgumentException e){
+                MyPopup myPopup=new MyPopup("Niepoprawne dane");
+                myPopup.show(borderPane.getScene().getWindow());
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished( a -> myPopup.hide() );
+                delay.play();
+            }
         });
 
         Button dodajGrupa=new Button("Dodaj Grupe");
@@ -251,8 +287,9 @@ public class ManageStudent {
         gridPane.add(dodajGrupa,0,5);
         gridPane.add(nazwaDodajGrupa,1,5);
         dodajGrupa.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_GROUP, new HashMap<>(Map.of("Nazwa", nazwaDodajGrupa.getText())));
+
             try {
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_GROUP, new HashMap<>(Map.of("Nazwa", nazwaDodajGrupa.getText())));
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
                 if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
@@ -279,6 +316,13 @@ public class ManageStudent {
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
+            catch (NumberFormatException e){
+                MyPopup myPopup=new MyPopup("Niepoprawne dane");
+                myPopup.show(borderPane.getScene().getWindow());
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished( a -> myPopup.hide() );
+                delay.play();
+            }
         });
 
         Button usunGrupa=new Button("Usun Grupe");
@@ -288,8 +332,9 @@ public class ManageStudent {
         gridPane.add(usunGrupa,0,6);
         gridPane.add(idUsunGrupa,1,6);
         usunGrupa.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_GROUP, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idUsunGrupa.getText()))));
+
             try {
+                DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_GROUP, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idUsunGrupa.getText()))));
                 Start.client.send(dataPackage);
                 DataPackage powiadomienie=Start.client.receive();
                 if (powiadomienie.getCommand()==DataPackage.Command.SUCCESSFUL){
@@ -315,6 +360,13 @@ public class ManageStudent {
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
+            }
+            catch (NumberFormatException e){
+                MyPopup myPopup=new MyPopup("Niepoprawne ID");
+                myPopup.show(borderPane.getScene().getWindow());
+                PauseTransition delay = new PauseTransition(Duration.seconds(1));
+                delay.setOnFinished( a -> myPopup.hide() );
+                delay.play();
             }
         });
 

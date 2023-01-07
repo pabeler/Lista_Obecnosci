@@ -77,12 +77,14 @@ public class ClientHandler extends Thread {
                         student.setGrupa((int) data.get("ID_Grupy"));
                         em.persist(student);
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case DELETE_STUDENT:
                         //Todo: delete student from database;
                         em.getTransaction().begin();
                         em.remove(em.find(Student.class, data.get("ID_Studenta")));
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case ADD_GROUP:
                         //Todo: add group to database;
@@ -93,12 +95,14 @@ public class ClientHandler extends Thread {
                         grupa.setTermin(null);
                         em.persist(grupa);
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case DELETE_GROUP:
                         //Todo: delete group from database;
                         em.getTransaction().begin();
                         em.remove(em.find(Grupa.class, data.get("ID_Grupy")));
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case ADD_STUDENT_TO_GROUP:
                         //Todo: add student to group in database;
@@ -108,6 +112,7 @@ public class ClientHandler extends Thread {
                         em.getTransaction().begin();
                         em.merge(student1);
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case REMOVE_STUDENT_FROM_GROUP:
                         //Todo: remove student from group in database;
@@ -117,6 +122,7 @@ public class ClientHandler extends Thread {
                         em.getTransaction().begin();
                         em.merge(student2);
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case ADD_DEADLINE:
                         //Todo: add deadline for a group;
@@ -126,6 +132,7 @@ public class ClientHandler extends Thread {
                         em.getTransaction().begin();
                         em.merge(grupa1);
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case CHECK_ABSENCE:
                         //Todo: check if student is absent;
@@ -135,6 +142,7 @@ public class ClientHandler extends Thread {
                         em.getTransaction().begin();
                         em.merge(student3);
                         em.getTransaction().commit();
+                        dos.writeObject(new DataPackage(DataPackage.Command.SUCCESSFUL, null));
                         break;
                     case GET_ABSENCE_LIST:
                         //Todo: get list of students who are absent;
@@ -147,12 +155,12 @@ public class ClientHandler extends Thread {
                         for (Student s : allQuery.getResultList()) {
                             students.put(String.valueOf(s.getId()), s);
                         }
-                        DataPackage dataPackage1 = new DataPackage(null, students);
+                        DataPackage dataPackage1 = new DataPackage(DataPackage.Command.SUCCESSFUL, students);
                         dos.writeObject(dataPackage1);
                         break;
 
                     default:
-                        dos.writeUTF("Invalid input");
+                        dos.writeObject(new DataPackage(DataPackage.Command.UNSUCCESSFUL, null));
                         break;
                 }
             } catch (IOException | ClassNotFoundException e) {

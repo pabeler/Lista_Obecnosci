@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Jakarta">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9a1dda11-7423-41ad-9bfb-5b4913ef7c64.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9a1dda11-7423-41ad-9bfb-5b4913ef7c64.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Dodanie WyswietlGrupy">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Interface" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />

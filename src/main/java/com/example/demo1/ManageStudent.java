@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -68,7 +70,15 @@ public class ManageStudent {
             DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_STUDENT, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsun.getText()))));
             try {
                 Start.client.send(dataPackage);
-                Start.client.receive();
+                DataPackage powiadomienie=Start.client.receive();
+                if (powiadomienie.getCommand()==DataPackage.Command.Succesfull){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Usunięto studenta"));
+                } else if (powiadomienie.getCommand()==DataPackage.Command.Unsuccesfull){
+                    Popup popup=new Popup();
+                    popup.getContent().add(new Text("Nie usunięto studenta"));
+                }
+
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
@@ -85,7 +95,7 @@ public class ManageStudent {
         gridPane.add(idUsunZGrupyStudent,1,2);
         gridPane.add(idUsunZGrupyGrupa,2,2);
         usunZGrupy.setOnMouseClicked(event ->{
-            DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodaj.getText()))));
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.REMOVE_STUDENT_FROM_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idUsunZGrupyStudent.getText()), "ID_Grupy", Integer.valueOf(idUsunZGrupyGrupa.getText()))));
             try {
                 Start.client.send(dataPackage);
                 Start.client.receive();
@@ -103,6 +113,15 @@ public class ManageStudent {
         gridPane.add(dodajDoGrupy,0,3);
         gridPane.add(idDodajDoGrupy,1,3);
         gridPane.add(grupaDodajDoGrupy,2,3);
+        dodajDoGrupy.setOnMouseClicked(event ->{
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_STUDENT_TO_GROUP, new HashMap<>(Map.of("ID_Studenta", Integer.valueOf(idDodajDoGrupy.getText()), "ID_Grupy", Integer.valueOf(grupaDodajDoGrupy.getText()))));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
 
 
 
@@ -116,15 +135,32 @@ public class ManageStudent {
         gridPane.add(idDodajTerminGrupy,1,4);
         gridPane.add(dataDodajTerminGrupy,2,4);
         borderPane.setCenter(gridPane);
-//        navbar.gridPane.setAlignment(Pos.TOP_CENTER);
         borderPane.setTop(navbar.gridPane);
+        dodajTerminGrupy.setOnMouseClicked(event ->{
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_DEADLINE, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idDodajTerminGrupy.getText()), "Data", dataDodajTerminGrupy.getText())));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
 
         Button dodajGrupa=new Button("Dodaj Grupe");
         dodajGrupa.setPrefWidth(WIDTH);
-        TextField idDodajGrupa=new TextField();
-        idDodajGrupa.setPromptText("Nazwa Grupy");
+        TextField nazwaDodajGrupa=new TextField();
+        nazwaDodajGrupa.setPromptText("Nazwa Grupy");
         gridPane.add(dodajGrupa,0,5);
-        gridPane.add(idDodajGrupa,1,5);
+        gridPane.add(nazwaDodajGrupa,1,5);
+        dodajGrupa.setOnMouseClicked(event ->{
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.ADD_GROUP, new HashMap<>(Map.of("Nazwa", nazwaDodajGrupa.getText())));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
 
         Button usunGrupa=new Button("Usun Grupe");
         usunGrupa.setPrefWidth(WIDTH);
@@ -132,6 +168,15 @@ public class ManageStudent {
         idUsunGrupa.setPromptText("ID Grupy");
         gridPane.add(usunGrupa,0,6);
         gridPane.add(idUsunGrupa,1,6);
+        usunGrupa.setOnMouseClicked(event ->{
+            DataPackage dataPackage = new DataPackage(DataPackage.Command.DELETE_GROUP, new HashMap<>(Map.of("ID_Grupy", Integer.valueOf(idUsunGrupa.getText()))));
+            try {
+                Start.client.send(dataPackage);
+                Start.client.receive();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
 
 
 

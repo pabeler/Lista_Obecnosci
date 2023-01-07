@@ -22,8 +22,8 @@ public class Client {
         objectOutputStream.writeObject(dataPackage);
     }
 
-    public void receive() throws IOException, ClassNotFoundException {
-        System.out.println((String) objectInputStream.readObject());
+    public DataPackage receive() throws IOException, ClassNotFoundException {
+        return (DataPackage) objectInputStream.readObject();
     }
     void close() throws IOException {
         socket.close();

@@ -18,6 +18,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
 public class ClientHandler extends Thread {
@@ -144,7 +146,7 @@ public class ClientHandler extends Thread {
                         try {
                             Grupa grupa1 = em.find(Grupa.class, data.get("ID_Grupy"));
                             em.detach(grupa1);
-                            grupa1.setTermin((Date) data.get("Termin"));
+                            grupa1.setTermin(java.sql.Date.valueOf((String) data.get("Data")));
                             em.getTransaction().begin();
                             em.merge(grupa1);
                             em.getTransaction().commit();

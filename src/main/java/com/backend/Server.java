@@ -5,6 +5,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+/**
+ * Class that represents the server.
+ * The server class creates a socket server and waits for a client to connect.
+ * When a client connects, the server creates a new thread that handles the client.
+ * @author Tobiasz Kostrzewa
+ */
 public class Server {
     private static final int PORT = 1234;
     private static final String HOST = "localhost";

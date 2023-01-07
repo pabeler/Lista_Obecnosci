@@ -3,7 +3,9 @@ package com.common;
 import jakarta.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
-
+/**
+ * Class that represents a group and is an Entity in the database.
+ */
 @Entity
 @Table(name = "grupy")
 public class Grupa implements java.io.Serializable {

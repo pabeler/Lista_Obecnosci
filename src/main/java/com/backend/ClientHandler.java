@@ -20,8 +20,10 @@ import java.net.Socket;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.HashMap;
-
+import java.util.*;
+/**
+ * Class that handles the client's requests.
+ */
 public class ClientHandler extends Thread {
     //private String name;
     private Socket s;
@@ -219,14 +221,6 @@ public class ClientHandler extends Thread {
     }
 
 
-//    public String getClientName() {
-//        return name;
-//    }
-//
-//    public void setClientName(String name) {
-//        this.name = name;
-//    }
-
     public Socket getSocket() {
         return s;
     }
@@ -258,37 +252,5 @@ public class ClientHandler extends Thread {
     public void setRunning(boolean running) {
         isRunning = running;
     }
-
-//    public boolean sendToClient(String clientName, String message) {
-//        for(Client c : clients) {
-//            if(c.getClientName().equals(clientName)) {
-//                c.sendMessage(message);
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-    private void sendMessage(String message) {
-        try {
-            dos.writeUTF(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-//    public static void sendToAllExceptSender(Client c, String received) {
-//        for (Client client : clients) {
-//            if (client != c) {
-//                client.sendMessage(received);
-//            }
-//        }
-//    }
-
-//    public static void sendToAll(String msg){
-//        for (Client client : clients){
-//            client.sendMessage(msg);
-//        }
-//    }
 
 }

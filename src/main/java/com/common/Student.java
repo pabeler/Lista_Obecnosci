@@ -3,7 +3,9 @@ package com.common;
 
 import jakarta.persistence.*;
 import java.util.Objects;
-
+/**
+ * Class that represents a student and is an Entity in the database.
+ */
 @Entity
 @Table(name = "studenci")
 public class Student implements java.io.Serializable {

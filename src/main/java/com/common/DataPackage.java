@@ -2,6 +2,9 @@ package com.common;
 
 import java.util.HashMap;
 
+/**
+ * Class that represents a package of data that is sent between the server and the client.
+ */
 public class DataPackage implements java.io.Serializable {
     private Command command;
     private HashMap<String, Object> data;
@@ -31,6 +34,9 @@ public class DataPackage implements java.io.Serializable {
         this.data = data;
     }
 
+    /**
+     * Enum that contains the commands that can be sent between the server and the client.
+     */
     public enum Command{
         ADD_STUDENT,
         DELETE_STUDENT,

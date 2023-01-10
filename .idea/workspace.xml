@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Change name of package example to frontend">
+    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Add date validation to ManageStudent class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/frontend/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,25 +48,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/mario/IdeaProjects/Lista_Obecnosci/src/main/java/com/example/demo1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.40229884",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "derby",
+      "postgresql",
+      "sqlserver",
+      "mysql"
+    ]
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mario\IdeaProjects\Lista_Obecnosci\src\main\java\com\example\demo1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mario\IdeaProjects\Lista_Obecnosci\src\main\resources" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.example" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -79,7 +96,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.backend.Server" />
-      <module name="demo1" />
+      <module name="Lista_Obecnosci" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.backend.*" />
@@ -93,11 +110,11 @@
     <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.frontend.Start" />
-      <module name="demo1" />
+      <option name="MAIN_CLASS_NAME" value="com.example.demo1.Start" />
+      <module name="Lista_Obecnosci" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.frontend.*" />
+          <option name="PATTERN" value="com.example.demo1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -143,9 +160,7 @@
       <workItem from="1673042028364" duration="3200000" />
       <workItem from="1673086996782" duration="1537000" />
       <workItem from="1673091626988" duration="5715000" />
-      <workItem from="1673346107611" duration="384000" />
-      <workItem from="1673347133204" duration="644000" />
-      <workItem from="1673356565929" duration="131000" />
+      <workItem from="1673361133701" duration="2272000" />
     </task>
     <task id="LOCAL-00001" summary="NEW">
       <created>1673035249743</created>
@@ -203,14 +218,7 @@
       <option name="project" value="LOCAL" />
       <updated>1673121101365</updated>
     </task>
-    <task id="LOCAL-00009" summary="Change name of package example to frontend">
-      <created>1673345089394</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1673345089394</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,28 +244,6 @@
     <MESSAGE value="Reformat code for all classes" />
     <MESSAGE value="Fix code for commands" />
     <MESSAGE value="Add date validation to ManageStudent class" />
-    <MESSAGE value="Change name of package example to frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change name of package example to frontend" />
-  </component>
-  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
-    <option name="sizePresets">
-      <list>
-        <SizePreset>
-          <option name="caption" value="Phone" />
-          <option name="height" value="568" />
-          <option name="width" value="320" />
-        </SizePreset>
-        <SizePreset>
-          <option name="caption" value="Tablet" />
-          <option name="height" value="1024" />
-          <option name="width" value="768" />
-        </SizePreset>
-        <SizePreset>
-          <option name="caption" value="Desktop" />
-          <option name="height" value="900" />
-          <option name="width" value="1440" />
-        </SizePreset>
-      </list>
-    </option>
+    <option name="LAST_COMMIT_MESSAGE" value="Add date validation to ManageStudent class" />
   </component>
 </project>

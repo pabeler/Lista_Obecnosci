@@ -1,4 +1,4 @@
-module com.example.demo1 {
+module com.frontend {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -12,6 +12,8 @@ module com.example.demo1 {
     requires jakarta.persistence;
 
     opens com.common to org.hibernate.orm.core;
-    opens com.example.demo1 to javafx.fxml;
-    exports com.example.demo1;
+//    opens com.frontend.demo1 to javafx.fxml;
+//    exports com.frontend.demo1;
+    exports com.frontend;
+    opens com.frontend to javafx.fxml;
 }

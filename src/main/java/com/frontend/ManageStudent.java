@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.frontend;
 
 import com.common.DataPackage;
 import javafx.animation.PauseTransition;

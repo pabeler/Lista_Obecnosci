@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.frontend;
 
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;

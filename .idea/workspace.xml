@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Add date validation to ManageStudent class">
+      <change afterPath="$PROJECT_DIR$/lib/j2ee.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/GrupaElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/GrupaElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/ManageStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/MyPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/MyPopup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Navbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/SprawdzObecnosci.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/StudentElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/StudentElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/TytulyGrupy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyObecnosc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/TytulyObecnosc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/WyswietlGrupy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/frontend/demo1/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,41 +64,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/mario/IdeaProjects/Lista_Obecnosci/src/main/java/com/example/demo1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.40229884&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
-  },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;derby&quot;,
-      &quot;postgresql&quot;,
-      &quot;sqlserver&quot;,
-      &quot;mysql&quot;
-    ]
-  }
-}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\mario\IdeaProjects\Lista_Obecnosci\src\main\java\com\example\demo1" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mario\IdeaProjects\Lista_Obecnosci\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -95,7 +85,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.backend.Server" />
-      <module name="Lista_Obecnosci" />
+      <module name="demo1" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.backend.*" />
@@ -109,11 +99,11 @@
     <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19 (2)" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="com.example.demo1.Start" />
-      <module name="Lista_Obecnosci" />
+      <option name="MAIN_CLASS_NAME" value="com.frontend.Start" />
+      <module name="demo1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.demo1.*" />
+          <option name="PATTERN" value="com.frontend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

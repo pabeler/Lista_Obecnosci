@@ -1,4 +1,4 @@
-package com.example.demo1;
+package com.frontend;
 
 import javafx.application.Application;
 import javafx.geometry.Pos;

@@ -25,8 +25,8 @@ public class WyswietlGrupy {
         try {
             Start.client.send(new DataPackage(DataPackage.Command.GET_GROUP_LIST, null));
             DataPackage dataPackage = Start.client.receive();
-            for (String o : dataPackage.getData().keySet()) {
-                Grupa grupa = (Grupa) dataPackage.getData().get(o);
+            for (String o : dataPackage.getMap().keySet()) {
+                Grupa grupa = (Grupa) dataPackage.getMap().get(o);
                 if (grupa.getTermin() == null) {
                     listView.getItems().addAll(new GrupaElement(grupa.getNazwa(), grupa.getId(), null));
                 } else {

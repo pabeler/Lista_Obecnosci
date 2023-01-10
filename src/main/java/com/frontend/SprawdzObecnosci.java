@@ -26,8 +26,8 @@ public class SprawdzObecnosci {
         try {
             Start.client.send(new DataPackage(DataPackage.Command.GET_ABSENCE_LIST, null));
             DataPackage dataPackage = Start.client.receive();
-            for (String o : dataPackage.getData().keySet()) {
-                Student student = (Student) dataPackage.getData().get(o);
+            for (String o : dataPackage.getMap().keySet()) {
+                Student student = (Student) dataPackage.getMap().get(o);
                 if (student.getGrupa() == null) {
                     listView.getItems().addAll(new StudentElement(student.getImie(), student.getNazwisko(),
                             student.getId(), 0, student.getObecnosc()));

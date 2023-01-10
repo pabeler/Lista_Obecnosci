@@ -69,8 +69,9 @@ public class ClientHandler extends Thread {
     /**
      * Constructor that creates a client handler.
      *
-     * @param s socket used to communicate with the client, dis object input stream used to receive data from the client,
-     *          dos object output stream used to send data to the client
+     * @param s   socket used to communicate with the client
+     * @param dis object input stream used to receive data from the client
+     * @param dos object output stream used to send data to the client
      */
     public ClientHandler(Socket s, ObjectInputStream dis, ObjectOutputStream dos) {
         this.s = s;
@@ -91,7 +92,7 @@ public class ClientHandler extends Thread {
         while (isRunning) {
             try {
                 dataPackage = (DataPackage) dis.readObject();
-                dataPackageMap = dataPackage.getData();
+                dataPackageMap = dataPackage.getMap();
                 switch (dataPackage.getCommand()) {
                     case EXIT_PROGRAM -> {
                         System.out.println("Client " + this.s + " sends exit...");

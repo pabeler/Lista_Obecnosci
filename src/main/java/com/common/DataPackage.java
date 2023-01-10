@@ -6,20 +6,42 @@ import java.util.HashMap;
  * Class that represents a package of data that is sent between the server and the client.
  */
 public class DataPackage implements java.io.Serializable {
+    /**
+     * command to be executed
+     */
     private Command command;
-    private HashMap<String, Object> data;
+    /**
+     * map storing Object identifier and the Object
+     */
+    private HashMap<String, Object> map;
 
-    public DataPackage(Command command, HashMap<String, Object> data) {
+    /**
+     * Constructor that creates a data package.
+     *
+     * @param command command to be executed
+     * @param map     map storing Object identifier and the Object
+     */
+    public DataPackage(Command command, HashMap<String, Object> map) {
         this.command = command;
-        this.data = data;
+        this.map = map;
     }
 
+    /**
+     * Method that returns the command.
+     *
+     * @return command to be executed
+     */
     public Command getCommand() {
         return command;
     }
 
-    public HashMap<String, Object> getData() {
-        return data;
+    /**
+     * Method that returns the map.
+     *
+     * @return map storing Object identifier and the Object
+     */
+    public HashMap<String, Object> getMap() {
+        return map;
     }
 
     /**

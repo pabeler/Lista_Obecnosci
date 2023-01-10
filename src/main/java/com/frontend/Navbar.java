@@ -6,11 +6,17 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
+/**
+ * Class that represents the navbar.
+ */
 public class Navbar {
     final double WIDTH = Double.MAX_VALUE;
     final double HEIGHT = Double.MAX_VALUE;
     GridPane gridPane = new GridPane();
 
+    /**
+     * Constructor that creates the navbar.
+     */
     Navbar() {
         Button zarzadzaj = new Button("Zarządzaj");
         zarzadzaj.setOnMouseClicked(event -> {
@@ -40,17 +46,23 @@ public class Navbar {
         gridPane.setAlignment(javafx.geometry.Pos.CENTER);
         gridPane.setPrefSize(Control.USE_PREF_SIZE, Control.USE_PREF_SIZE);
     }
-
+    /**
+     * Method that change scene root to WyswietlGrupy.
+     */
     private void wyswietlGrupy() {
         Start.scene.setRoot(new WyswietlGrupy().borderPane);
         Start.scene.getWindow().sizeToScene();
     }
-
+    /**
+     * Method that change scene root to ManageStudent.
+     */
     private void zarzadzaj() {
         Start.scene.setRoot(new ManageStudent().borderPane);
         Start.scene.getWindow().sizeToScene();
     }
-
+    /**
+     * Method that change scene root to SprawdzObecnosc.
+     */
     private void sprawdzObecnosc() {
         Start.scene.setRoot(new SprawdzObecnosci().borderPane);
         Start.scene.getWindow().sizeToScene();

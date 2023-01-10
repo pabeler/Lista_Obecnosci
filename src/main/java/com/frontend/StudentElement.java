@@ -13,7 +13,17 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that represents the group element.
+ */
 public class StudentElement extends GridPane {
+    /**
+     * Constructor of the class.
+     * @param id id of the group
+     * @param nazwa nazwa of the group
+     * @param termin termin of the group
+     * @param obecnosc obecnosc of the group
+     */
     StudentElement(String imie, String nazwisko, int id, int grupa, String obecnosc) {
         Text textImie = new Text(imie);
         Text textNazwisko = new Text(nazwisko);

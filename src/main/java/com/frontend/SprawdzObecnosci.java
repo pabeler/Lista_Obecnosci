@@ -8,9 +8,15 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
+/**
+ * Class that represents the window that allows to check the presence of students.
+ */
 public class SprawdzObecnosci {
     BorderPane borderPane = new BorderPane();
 
+    /**
+     * Constructor that creates the window.
+     */
     SprawdzObecnosci() {
         Navbar navbar = new Navbar();
         navbar.gridPane.setAlignment(Pos.TOP_CENTER);

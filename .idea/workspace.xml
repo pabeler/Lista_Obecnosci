@@ -4,25 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Add date validation to ManageStudent class">
-      <change afterPath="$PROJECT_DIR$/lib/j2ee.jar" afterDir="false" />
+    <list default="true" id="79f5cc76-8900-4002-a213-b6827edd8ad9" name="Changes" comment="Change name of package example to frontend">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/backend/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/GrupaElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/GrupaElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/ManageStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/ManageStudent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/MyPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/MyPopup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Navbar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/SprawdzObecnosci.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/SprawdzObecnosci.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/StudentElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/StudentElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/TytulyGrupy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/TytulyObecnosc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/TytulyObecnosc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo1/WyswietlGrupy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/WyswietlGrupy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/demo1/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/frontend/demo1/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/frontend/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/frontend/Start.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +47,16 @@
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -149,6 +143,9 @@
       <workItem from="1673042028364" duration="3200000" />
       <workItem from="1673086996782" duration="1537000" />
       <workItem from="1673091626988" duration="5715000" />
+      <workItem from="1673346107611" duration="384000" />
+      <workItem from="1673347133204" duration="644000" />
+      <workItem from="1673356565929" duration="131000" />
     </task>
     <task id="LOCAL-00001" summary="NEW">
       <created>1673035249743</created>
@@ -206,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673121101365</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Change name of package example to frontend">
+      <created>1673345089394</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673345089394</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,6 +236,28 @@
     <MESSAGE value="Reformat code for all classes" />
     <MESSAGE value="Fix code for commands" />
     <MESSAGE value="Add date validation to ManageStudent class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add date validation to ManageStudent class" />
+    <MESSAGE value="Change name of package example to frontend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Change name of package example to frontend" />
+  </component>
+  <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
+    <option name="sizePresets">
+      <list>
+        <SizePreset>
+          <option name="caption" value="Phone" />
+          <option name="height" value="568" />
+          <option name="width" value="320" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Tablet" />
+          <option name="height" value="1024" />
+          <option name="width" value="768" />
+        </SizePreset>
+        <SizePreset>
+          <option name="caption" value="Desktop" />
+          <option name="height" value="900" />
+          <option name="width" value="1440" />
+        </SizePreset>
+      </list>
+    </option>
   </component>
 </project>

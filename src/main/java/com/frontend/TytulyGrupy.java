@@ -6,7 +6,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 
+/**
+ * Class that represents the group element.
+ */
 public class TytulyGrupy extends GridPane {
+    /**
+     * Constructor of the class.
+     */
     TytulyGrupy() {
         Text textID = new Text("ID");
         Text textNazwa = new Text("Nazwa Grupy");

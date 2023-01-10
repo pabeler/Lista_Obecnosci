@@ -13,11 +13,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * Class that represents the manage student window.
+ */
 public class ManageStudent {
     public final BorderPane borderPane = new BorderPane();
     final double WIDTH = 150;
 
+
+    /**
+     * Method that creates the manage student window.
+     */
     public ManageStudent() {
         Navbar navbar = new Navbar();
         GridPane gridPane = new GridPane();

@@ -6,7 +6,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 
+/**
+ * Class that represents the group element.
+ */
 public class GrupaElement extends GridPane {
+    /**
+     * Constructor of the class.
+     * @param id id of the group
+     * @param nazwa nazwa of the group
+     * @param termin termin of the group
+     * @param obecnosc obecnosc of the group
+     */
     GrupaElement(String nazwa, int id, String termin) {
         Text nazwaGrupy = new Text(nazwa);
         Text idGrupy = new Text(String.valueOf(id));

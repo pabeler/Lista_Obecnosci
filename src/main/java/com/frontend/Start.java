@@ -13,14 +13,27 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Class that represents the main class of the program.
+ */
 public class Start extends Application {
     static Scene scene;
     static Client client;
 
+    /**
+     * Method that starts the program.
+     * @param primaryStage stage of the program
+     * @throws IOException exception
+     */
     public static void main(String[] args) {
         launch();
     }
 
+
+    /**
+     * Method that starts the application.
+     * @param stage The stage that the application is running on.
+     */
     @Override
     public void start(Stage primaryStage) {
         scene = new Scene(new ManageStudent().borderPane, Control.USE_COMPUTED_SIZE, Control.USE_COMPUTED_SIZE);

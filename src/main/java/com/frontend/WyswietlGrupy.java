@@ -8,9 +8,14 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
+/**
+ * Class that represents the window that allows to display groups.
+ */
 public class WyswietlGrupy {
     BorderPane borderPane = new BorderPane();
-
+    /**
+     * Constructor that creates the window.
+     */
     WyswietlGrupy() {
         Navbar navbar = new Navbar();
         navbar.gridPane.setAlignment(Pos.TOP_CENTER);

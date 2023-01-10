@@ -6,7 +6,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 
+/**
+ * Class that represents the group element.
+ */
 public class TytulyObecnosc extends GridPane {
+    /**
+     * Constructor of the class.
+     */
     TytulyObecnosc() {
         Text textImie = new Text("Imie");
         Text textNazwisko = new Text("Nazwisko");
